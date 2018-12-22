@@ -22,15 +22,23 @@ export default {
     posts_list
   },
   methods:{
+    ...mapActions({
+        set_filter: 'posts/filtered',
+        set_contador: 'posts/reset_counter' 
+    }),
     tab_select(filter){
-      console.log(filter)
+      console.log(filter);
       this.set_filter(filter);
-    },
-    ...mapActions({set_filter: 'posts/filtered'})
+      this.set_contador(4);
+    }
   }
 } 
 </script>
 
 
 <style>
+  .btabs {
+    padding: 5px;
+  }  
+
 </style>

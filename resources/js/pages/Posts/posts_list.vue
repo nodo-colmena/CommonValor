@@ -31,7 +31,8 @@ export default {
     ...mapGetters({
       tag: "posts/tag",
       filter: "posts/filter",
-      posts: "posts/posts"
+      posts: "posts/posts",
+      postCounter: "posts/contadorPost"
     }),
 /*
     poster: function(){
@@ -41,10 +42,11 @@ export default {
   methods: {
     ...mapActions({
       get_client: "posts/get_client",
-      get_posts: "posts/get_posts"
+      get_posts: "posts/get_posts",
+      set_contador: 'posts/reset_counter'
     }),
     get_filtered_posts() {
-      this.get_posts({tag: this.tag, filter: this.filter, num:this.postsNumber, client: this.client})
+      this.get_posts({tag: this.tag, filter: this.filter, num:this.postCounter, client: this.client})
     },
     //add scroll handling
     handleScroll() {
@@ -53,7 +55,7 @@ export default {
       var height = d.offsetHeight;
 
       if (offset === height) {
-        this.postsNumber += 4
+        this.set_contador(this.postCounter + 4);
         this.get_filtered_posts()
       }
     }

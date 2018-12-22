@@ -3,4 +3,6 @@ export default {
   filter: 'trending',
   posts:[],
   client: {},
+  contadorPost: 4,
+  selected_post:{},
 }

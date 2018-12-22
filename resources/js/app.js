@@ -49,6 +49,7 @@ import Login from './pages/Login/Index.vue'
 import Posts from './pages/Posts/Index.vue'
 import new_post from './pages/Posts/new_post.vue'
 import profile from './pages/profile/index.vue'
+import post_details from './pages/Posts/post_details.vue'
 
 //declaracion de vector routes necesario para router
 const routes = [
@@ -63,6 +64,7 @@ const routes = [
      { path: '/Posts', component: Posts, meta: { layout: 'no-flexbox' }  },
      { path: '/newPost', component:new_post,meta:{layout:'no-flexbox'} },
      { path: '/panel_usr', component:profile,meta:{layout:'no-flexbox'} },
+     { path: '/post/:url', component: post_details, name: 'post_details', meta: { layout: 'default' } },
      { path: '/', redirect: '/LandPage' },
      { path: '/*', redirect: '/LandPage' },
    ]

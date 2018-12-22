@@ -28,8 +28,14 @@ export default {
       });
   },
 
-
   get_client({commit},client){
     commit("set_client",{client})
+  },
+
+  reset_counter({commit}, number){
+    commit("set_contador", number)
+  },
+  get_selected_post({commit},post){
+    commit("set_details_post",post)
   },
 }
