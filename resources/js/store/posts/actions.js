@@ -1,11 +1,14 @@
 
 export default {
+
   tagged({commit}, tag) {
       commit("set_tag", tag)
   },
+
   filtered({commit}, filter) {
       commit("set_filter", filter)
   },
+
   get_posts({commit}, {tag, filter, num, client}) {
       const query = {
           tag:tag,
@@ -28,14 +31,25 @@ export default {
       });
   },
 
-  get_client({commit},client){
-    commit("set_client",{client})
-  },
-
   reset_counter({commit}, number){
     commit("set_contador", number)
   },
+
   get_selected_post({commit},post){
     commit("set_details_post",post)
   },
+
+  get_comments({commit},{author, permlink,client}){
+    return new Promise((resolve, reject) => {
+      client.database.call('get_content_replies', [author, permlink])
+        .then((response) => {
+          commit("set_comments_selected_post",response)
+          resolve(response);
+        })
+        .catch(({ response }) => {
+          reject(response)
+        })
+    });
+},
+
 }

@@ -31,15 +31,3 @@ export default {
 </style>
 
 
-/*
-Usar Bootstrap con Vue.js es un poco complicado, debido a la gran dependencia de los 
-componentes dinámicos de Bootstrap en jQuery. 
-
-Bootstrap-Vue no solo es compatible con los componentes y el sistema de cuadrícula 
-de Bootstrap, sino que también incluye la compatibilidad con las Directivas Vue.js , 
-que nos brinda el conjunto completo de características del ecosistema Vue.js.
-Ademas de que sus componentes son rederizados mas rapido que los de bootstrap normal
-
-mas info: https://medium.com/@BjornKrols/integrating-and-customising-bootstrap-4-in-vue-js-cbc29ba7688e
-
-*/ */

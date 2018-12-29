@@ -5,9 +5,6 @@ export default {
   set_filter(state, filter){
       state.filter = filter
   },
-  set_client(state,{client}){
-      state.client =  client
-  },
   set_posts(state, posts){
       state.posts=posts
   },
@@ -15,6 +12,9 @@ export default {
     state.contadorPost = contadorPost
   },
   set_details_post(state,post){
-    state.selected_post=post;
-  }
+    state.selected_post=post
+  },
+  set_comments_selected_post(state,comments){
+    state.comments_selected_post=comments
+  },
 }

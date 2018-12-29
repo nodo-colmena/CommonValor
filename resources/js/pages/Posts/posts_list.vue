@@ -10,15 +10,13 @@
 
 <script>
 import card_view from "./card_view_item.vue";
-import { mapActions, mapGetters, mapMutations } from "vuex";
-
+import { mapActions, mapGetters} from "vuex";
 
 export default {
   name: "post_list",
 
   data(){
     return {
-      client: null,
       postsNumber: 4
     }
   },
@@ -32,54 +30,53 @@ export default {
       tag: "posts/tag",
       filter: "posts/filter",
       posts: "posts/posts",
-      postCounter: "posts/contadorPost"
+      postCounter: "posts/contadorPost",
+      client:"auth/client"
     }),
-/*
-    poster: function(){
-      return this.$store.getters.get_posts(ob);
-    }*/
   },
+
   methods: {
     ...mapActions({
-      get_client: "posts/get_client",
+      get_client: "auth/get_client", //public generic client
       get_posts: "posts/get_posts",
       set_contador: 'posts/reset_counter'
     }),
-    get_filtered_posts() {
+
+    get_filtered_posts() {//call action - bring posts 
       this.get_posts({tag: this.tag, filter: this.filter, num:this.postCounter, client: this.client})
     },
-    //add scroll handling
-    handleScroll() {
-      var d = document.documentElement;
-      var offset = d.scrollTop + window.innerHeight;
-      var height = d.offsetHeight;
 
-      if (offset === height) {
+    //add scroll handling
+    handleScroll() {//controll scroll
+      var d = document.documentElement;
+      var offset = d.scrollTop + window.innerHeight; //control scroll
+      var height = d.offsetHeight;                   //control scroll
+
+      if (offset === height) {   //limit of the scroll
         this.set_contador(this.postCounter + 4);
         this.get_filtered_posts()
       }
     }
   },
+
   watch: {
-    filter(){
+    filter(){ //when filter is changed or tag is change, call local function
       this.get_filtered_posts()
     },
     tag(){
       this.get_filtered_posts()
     }
   },
+
   created(){
-    const dsteem = require("dsteem");
-
-    let opts = {};
-    //connect to server which is connected to the network/production
-    this.client = new dsteem.Client("https://api.steemit.com");
-
+    //request to public client
+    this.get_client()
+    //bring posts
     this.get_filtered_posts()
-
     //scroll add event for charge more posts
     window.addEventListener('scroll', this.handleScroll)
   },
+
   destroyed () {
     window.removeEventListener('scroll', this.handleScroll);
   }

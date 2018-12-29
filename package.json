@@ -32,11 +32,11 @@
         "axios": "^0.18.0",
         "bootstrap": "^4.0.0-beta.2",
         "bootstrap-vue": "^1.2.0",
-        "dsteem": "^0.9.0",
+        "dsteem": "^0.10.1",
+        "sc2-sdk": "^2.0.1",
         "mavon-editor": "^2.6.17",
         "popper.js": "^1.12.9",
         "remarkable": "^1.7.1",
-        "sc2-sdk": "^2.0.1",
         "vue": "^2.5.3",
         "vue-router": "^3.0.1",
         "vuex": "^3.0.1"
