@@ -7,7 +7,7 @@ This interoperability can be a natural, understandable and simple entrance for m
 
 ## Proof-of-Brain (PoB) + Proof-of-Cooperation (PoC)
 
-Philantrophist Economy and organizations of Solidarity Economy are centred on the valorisation of the human being and not on the prioritisation of capital and **they're rarely incentiviced**, this leaded to a slow growth of the value they where creating. In this sense, FairCoop is a global Cooperative that uses FairCoin to exchange and create Value focused on organizations of Solidarity Economy and the Economics of Philanthropy; togetheer these Blockchains (Steem-Faircoin) can enhace these activities.
+Philantrophist Economy and organizations of Solidarity Economy are centred on the valorisation of the human being and not on the prioritisation of capital and **they're rarely incentiviced**, this leaded to a slow growth of the value they where creating. In this sense, FairCoop is a global Cooperative that uses FairCoin to exchange and create Value focused on organizations of Solidarity Economy and the Economics of Philanthropy; togetheer these Blockchains (Steem-Faircoin) can enhance these activities.
 
 <p align="center"><img src="https://media.discordapp.net/attachments/508186494687772672/528258368033521680/unknown.png"></p>
 <p align="center"> UI Design </p>
