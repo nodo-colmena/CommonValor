@@ -19,23 +19,23 @@ We would like to extend our thanks to all the people that supports this integrat
 
 You can contriibute or become part to the CommonValor Layer by following this information flow!
 
->> https://steemit.com/created/faircoin
+> https://steemit.com/created/faircoin
 
->> https://steemit.com/created/faircoop
+> https://steemit.com/created/faircoop
 
 Join vía Telegram
 
 Faircoop Technical
 
->>  https://t.me/joinchat/A9k9vgaH5Bhx3g1nZuBQkA<
+>  https://t.me/joinchat/A9k9vgaH5Bhx3g1nZuBQkA<
 
 Faircoop Development
 
->>  https://t.me/joinchat/AAAAAAaikf1QW0Lsw6c8Gg
+>  https://t.me/joinchat/AAAAAAaikf1QW0Lsw6c8Gg
 
 FairCoop Global Assemblies Group
 
->> https://t.me/joinchat/B0S3OkT5VcP-PazMNoNdaA (Assemblies Every Thursday at 19.00 CET.)
+> https://t.me/joinchat/B0S3OkT5VcP-PazMNoNdaA (Assemblies Every Thursday at 19.00 CET.)
 
 <p></p>
 <p></p>
