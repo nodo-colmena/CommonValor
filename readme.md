@@ -45,7 +45,7 @@ FairCoop Global Assemblies Group
 
 ## Vision and Steem Mining Value
 
-This approach (Faircoin+Steem resourses) can be together a very friendly layer for people to interact with blockchain in an usual form, because the philantropist activities of individuals are going to have more incentives, in contrast with the old unpaid volunteering. The flow of money and reliance on public funds can increase... 
+This approach (Faircoin+Steem resourses) can be together a very friendly layer for people to interact with blockchain in an usual form, because the Philantropist, Activist and Solidarity activities of individuals are going to have more incentives, in contrast with the old unpaid volunteering. The flow of money and reliance on public funds can increase... 
 
 [More about Steem-Faircoin proposal](https://docs.google.com/document/d/19nDhpQXi9zLZf9O7IWbDc9MIsr-k7OSlcGv2zZlZwrs/edit)
 
