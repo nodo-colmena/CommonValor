@@ -1,11 +1,13 @@
-<h1 align="center"> Common Valor</h1>
+<h1 align="center"> CommonValor</h1>
 
 ## About Common Valor
-Common Valor is a web application that uses the Steem ecosystem to reward activism through the generation of content. It also incorporates the exchange of steem faircoin which gives support and liquidity to the latter.
+
+Common Valor is a web application that uses the Steem ecosystem to reward activism with generation of quality content. It also incorporates an Exchange of Steem-Faircoin.
 
 Common Valor uses Vue.js in frontend and Laravel in Backend taking advantage of the ease of integration of these 2 frameworks.
 
 ## Install and Building
+
 The project uses the default Laravel Homestead configuration through Vagrant but you can use your own virtual environment or work with your own computer resources. 
 
 Homestead helps to save time used in configuring the Backend tools for the development of the project.
@@ -15,10 +17,14 @@ Homestead helps to save time used in configuring the Backend tools for the devel
 ## What do you need?
 
 - **[PHP > 7](http://php.net/manual/es/intro-whatis.php)**
+
 - **[Composer](https://getcomposer.org/)**
+
 - **[Vagrant - Homestead (optional)](https://laravel.com/docs/5.7/homestead)**
+
 - **[npm](https://www.npmjs.com/)**
-- **[Vue via npm](https://vuejs.org/v2/guide/installation.html/)**
+
+- **[Vue with npm](https://vuejs.org/v2/guide/installation.html/)**
 
 
 Once your virtual environment has been defined and installed, you can clone this repository into your virtual container. 
