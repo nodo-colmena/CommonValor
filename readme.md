@@ -45,7 +45,7 @@ If you use vagrant and homestead you may have to configure the file /etc/hosts w
 
 ## License
 
-Common Valor is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Software licensed under [MIT license](https://opensource.org/licenses/MIT).
 
 
 <p align="center"><img src="https://media.discordapp.net/attachments/508186494687772672/525495085618692126/unknown.png"></p>
