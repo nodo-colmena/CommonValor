@@ -17,13 +17,7 @@ Philantrophist Economy and organizations of Solidarity Economy are centred on th
 
 We would like to extend our thanks to all the people that supports this integration from Many countries!
 
-You can contriibute or become part to the CommonValor Layer by following this information flow!
-
-> https://steemit.com/created/faircoin
-
-> https://steemit.com/created/faircoop
-
-Join vía Telegram
+Join & Contribute vía Telegram
 
 Faircoop Technical
 
@@ -36,6 +30,12 @@ Faircoop Development
 FairCoop Global Assemblies Group
 
 > https://t.me/joinchat/B0S3OkT5VcP-PazMNoNdaA (Assemblies Every Thursday at 19.00 CET.)
+
+Learn more or become part to the CommonValor Layer by following this information flow!
+
+> https://steemit.com/created/faircoin
+
+> https://steemit.com/created/faircoop
 
 <p></p>
 <p></p>
