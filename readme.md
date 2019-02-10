@@ -1,10 +1,10 @@
 <h1 align="center"> CommonValor</h1>
 
-## About Common Valor
+## About 
 
-Common Valor is a web application that uses the Steem ecosystem to reward activism with generation of quality content. It also incorporates an Exchange of Steem-Faircoin.
+CommonValor is a web application that uses the Steem ecosystem to reward activism with generation of quality content. It also incorporates an Exchange of Steem-Faircoin.
 
-Common Valor uses Vue.js in frontend and Laravel in Backend taking advantage of the ease of integration of these 2 frameworks.
+It uses Vue.js in frontend and Laravel in Backend taking advantage of the ease of integration of these 2 frameworks.
 
 ## Install and Building
 
