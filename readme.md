@@ -32,7 +32,7 @@ Once your virtual environment has been defined and installed, you can clone this
 <h3>Type in the console</h3>
 
 ```
-$ cd DAppCommonValor/
+$ cd CommonValor/
 $ vagrant up (optional)
 $ composer install 
 $ npm install 
