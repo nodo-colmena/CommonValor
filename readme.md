@@ -1,68 +1,102 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+<h1 align="center"> CommonValor</h1>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## About 
 
-## About Laravel
+CommonValor is a web application that uses the Steem ecosystem to reward activism with generation of quality content. It also incorporates an Exchange of Steem-Faircoin.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+It uses Vue.js in frontend and Laravel in Backend taking advantage of the ease of integration of these 2 frameworks.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Install and Building
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+The project uses the default Laravel Homestead configuration through Vagrant but you can use your own virtual environment or work with your own computer resources. 
 
-## Learning Laravel
+Homestead helps to save time used in configuring the Backend tools for the development of the project.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
 
-## Laravel Sponsors
+## What do you need?
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+- **[PHP > 7](http://php.net/manual/es/intro-whatis.php)**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
+- **[Composer](https://getcomposer.org/)**
 
-## Contributing
+- **[Vagrant - Homestead (optional)](https://laravel.com/docs/5.7/homestead)**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **[npm](https://www.npmjs.com/)**
 
-## Security Vulnerabilities
+- **[Vue with npm](https://vuejs.org/v2/guide/installation.html/)**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+
+Once your virtual environment has been defined and installed, you can clone this repository into your virtual container. 
+
+<h3>Type in the console</h3>
+
+```
+$ cd CommonValor/
+$ vagrant up (optional)
+$ composer install 
+$ npm install 
+$ npm run dev
+```
+
+### Note
+If you use vagrant and homestead you may have to configure the file /etc/hosts with the domain name "commonvalor.org.test" or you can modify the file .env and .env.example inside the folder of your homestead virtual server.
+
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Software licensed under [MIT license](https://opensource.org/licenses/MIT).
+
+
+<p align="center"><img src="https://media.discordapp.net/attachments/508186494687772672/525495085618692126/unknown.png"></p>
+
+## Why
+
+This interoperability can be a natural, understandable and simple entrance for masses into the blockchain 'real world' social interaction context, ie, bridging these blockchains is a natural action due to the social nature of people. 
+
+
+## Proof-of-Brain (PoB) + Proof-of-Cooperation (PoC)
+
+Philantrophist Economy and organizations of Solidarity Economy are centred on the valorisation of the human being and not on the prioritisation of capital and **they're rarely incentiviced**, this leaded to a slow growth of the value they where creating. In this sense, FairCoop is a global Cooperative that uses FairCoin to exchange and create Value focused on organizations of Solidarity Economy and the Economics of Philanthropy; togetheer these Blockchains (Steem-Faircoin) can enhance these activities.
+
+<p align="center"><img src="https://media.discordapp.net/attachments/508186494687772672/528258368033521680/unknown.png"></p>
+<p align="center"> UI Design </p>
+<p align="center"><img src="https://i.imgsafe.org/e4/e4ad05dbb6.png"></p>
+<p align="center"> Merchants, Services and Products that accepts Faircoin </p>
+
+
+We would like to extend our thanks to all the people that supports this integration from Many countries!
+
+Join & Contribute vía Telegram
+
+Faircoop Technical
+
+>  https://t.me/joinchat/A9k9vgaH5Bhx3g1nZuBQkA<
+
+Faircoop Development
+
+>  https://t.me/joinchat/AAAAAAaikf1QW0Lsw6c8Gg
+
+FairCoop Global Assemblies Group
+
+> https://t.me/joinchat/B0S3OkT5VcP-PazMNoNdaA (Assemblies Every Thursday at 19.00 CET.)
+
+Learn more or become part to the CommonValor Layer by following this information flow!
+
+> https://steemit.com/created/faircoin
+
+> https://steemit.com/created/faircoop
+
+<p></p>
+<p></p>
+
+<p align="center"> <img src="https://i.imgsafe.org/ea/ea488b8fae.jpeg"></p>
+
+
+## Vision and Steem Mining Value
+
+This approach (Faircoin+Steem resourses) can be together a very friendly layer for people to interact with blockchain in an usual form, because the Philantropist, Activist and Solidarity activities of individuals are going to have more incentives, in contrast with the old unpaid volunteering. The flow of money and reliance on public funds can increase... 
+
+[More about Steem-Faircoin proposal](https://docs.google.com/document/d/19nDhpQXi9zLZf9O7IWbDc9MIsr-k7OSlcGv2zZlZwrs/edit)
+
+<p align="center"><img src="https://i.imgur.com/LRSajmF.jpg"></p>
