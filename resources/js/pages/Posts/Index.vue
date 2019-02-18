@@ -1,20 +1,20 @@
 <template>
-    <div>
-      <b-container fluid class="rowclass">
-          <b-row>
-            <b-col cols="2">
-              <tags_filters ></tags_filters>  
-            </b-col>
-            <b-col cols="8" class="border">
-              <tab_bar> </tab_bar>
-              <post_list></post_list>
-            </b-col>
-            <b-col cols="2">
-              <card_aside_links></card_aside_links>    
-            </b-col>
-          </b-row>
-        </b-container>
-    </div>
+  <div>
+    <b-container fluid class="rowclass">
+      <b-row>
+        <b-col cols="2">
+          <tab_bar/>
+          <tags_filters/>
+        </b-col>
+        <b-col cols="8">
+          <post_list/>
+        </b-col>
+        <b-col cols="2">
+          <card_aside_links/>
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
 </template>
 
 <script>
