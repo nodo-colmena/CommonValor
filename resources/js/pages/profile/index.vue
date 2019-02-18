@@ -5,14 +5,13 @@
 </template>
 
 <script>
-import tabs from './tabs.vue'
-  export default {
-    components:{
-      tabs
-    }
+import tabs from "./tabs.vue";
+export default {
+  components: {
+    tabs
   }
+};
 </script>
 
 <style scoped>
-
 </style>
