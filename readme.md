@@ -29,12 +29,105 @@ Homestead helps to save time used in configuring the Backend tools for the devel
 
 Once your virtual environment has been defined and installed, you can clone this repository into your virtual container. 
 
-<h3>Type in the console</h3>
+
+<h3>Configuration</h3>
+
+After installing git and Vagrant, create a vagrant box
+
+```
+$ vagrant box add laravel/homestead
+```
+
+Then install Composer 
+
+```
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === '48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+```
+
+```
+$ sudo apt install composer
+```
+
+Create the project folder 
+
+```
+$ mkdir CommonValor
+```
+
+Within project folder add composer to laravel homestead
+```
+$ composer require laravel/homestead --dev
+```
+```
+$ php vendor/bin/homestead make
+```
+
+Within project folder create your SSH Keys 
+
+```
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+```
+eval "$(ssh-agent -s)"
+```
+Add your new SSH private key to the ssh-agent
+```
+ ssh-add -k ~/.ssh/id_rsa
+```
+Now run 
+```
+vagrant up
+```
+
+At this point the virutal server is running, we can communicate via SSH and install Laravel using
+
+```
+composer global require laravel/installer
+```
+
+Then we have to download php dependencies
+
+```
+composer install
+```
+
+Within CommonValor folder, where all the frontend code is, execute
+
+```
+npm install
+```
+
+In your web browser now you are able to visit the web application at 192.168.10.10. If a message of "No input specified" is displayed you should configure your homestead.yaml file within your project folder as follows
+
+```
+sites:
+	-
+    	map: homestead.test
+    	to: /home/vagrant/code/public
+```
+Lastly copy your .env.example file 
+```
+cp -a .env.example .env
+```
+Generate a key 
+```
+p artisan key:generate
+```
+
+Refresh the browser
+
+<h3>Running CommonValor</h3>
 
 ```
 $ cd CommonValor/
 $ vagrant up (optional)
 $ composer install 
+```
+Within CommonValor project folder
+```
 $ npm install 
 $ npm run dev
 ```
