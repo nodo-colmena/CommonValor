@@ -100,21 +100,19 @@ Within CommonValor folder, where all the frontend code is, execute
 npm install
 ```
 
-In your web browser now you are able to visit the web application at 192.168.10.10. If a message of "No input specified" is displayed you should configure your homestead.yaml file within your project folder as follows
+In your web browser now you are able to visit the web application at IP 192.168.10.10. If a message displaying "No input specified" appears you should configure your homestead.yaml file within your project folder as follows
 
 ```
 sites:
 	-
     	map: homestead.test
-    	to: /home/vagrant/code/public
+    	to: /home/vagrant/code/CommonValor/public
 ```
-Lastly copy your .env.example file 
+Lastly if message _No application encryption key has been specified_ is displayed generate your key
+development application executing the following command in your frontend folder CommonValor
+
 ```
-cp -a .env.example .env
-```
-Generate a key 
-```
-p artisan key:generate
+php artisan key:generate
 ```
 
 Refresh the browser
@@ -193,3 +191,23 @@ This approach (Faircoin+Steem resourses) can be together a very friendly layer f
 [More about Steem-Faircoin proposal](https://docs.google.com/document/d/19nDhpQXi9zLZf9O7IWbDc9MIsr-k7OSlcGv2zZlZwrs/edit)
 
 <p align="center"><img src="https://i.imgur.com/LRSajmF.jpg"></p>
+
+## How to contribute
+
+By running command
+
+```
+vagrant up 
+```
+
+the virtual server with frontend code is going to be running, so if changes are made to the **frontend** you just have te recompile it with 
+
+```
+npm run dev
+```
+if changes are made to the **backend** you have to reload vagrant 
+
+```
+vagrant reload --provision
+```
+
