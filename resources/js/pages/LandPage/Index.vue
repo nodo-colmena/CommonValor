@@ -1,20 +1,11 @@
 <template>
+<div class="land">
+      <div class="land-text">
+    <h2>Earn by learning & cooperating in a new FairEconomy</h2>
+    <b-btn variant="warning" href="#/Investors"><strong>How it works</strong></b-btn>
+    </div>
+</div>
 
-    <b-container>
-        <b-row class="justify-content-md-center">
-            <b-col col md="10">
-                <b-jumbotron header="Nodo Colmena" lead="Lorem ipsum dolor sit amet" >
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <b-btn variant="primary" href="#">More Info</b-btn>
-                </b-jumbotron>
-            </b-col>
-        </b-row>
-    </b-container>
 
 </template>
 
@@ -26,5 +17,23 @@
 
 
 <style lang="scss">
+
+.land {
+    
+   background-image: url("https://ak3.picdn.net/shutterstock/videos/7882573/thumb/1.jpg");
+   height: 800px; 
+   position: relative;
+   background-size: cover;
+}
+.land-text {
+  text-align: center;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-shadow: rgb(255, 255, 255) 0 0 10px, rgb(253, 250, 68) 2px 1px 1px;
+  
+}
 
 </style>
