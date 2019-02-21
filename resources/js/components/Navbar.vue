@@ -10,10 +10,10 @@
 
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav class="ml-auto mr-auto">
-        <b-nav-item href="#/Posts">Posts</b-nav-item>
+        <b-nav-item href="#/Posts">Ecosistem</b-nav-item>
         <b-nav-item href="#/Exchange">Exchange</b-nav-item>
-        <b-nav-item href="#/Investors">Investors</b-nav-item>
-        <b-nav-item href="#/AboutUs">AboutUs</b-nav-item>
+        <b-nav-item href="#/Investors">Be Part</b-nav-item>
+        <b-nav-item href="#/AboutUs">Team</b-nav-item>
       </b-navbar-nav>
 
       <b-navbar-nav>
