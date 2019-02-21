@@ -153,7 +153,7 @@ Philantrophist Economy and organizations of Solidarity Economy are centred on th
 <p align="center"><img src="https://media.discordapp.net/attachments/508186494687772672/528258368033521680/unknown.png"></p>
 <p align="center"> UI Design </p>
 <p align="center"><img src="https://i.imgsafe.org/e4/e4ad05dbb6.png"></p>
-<p align="center"> Merchants, Services and Products that accepts Faircoin </p>
+<p align="center"> Merchants, Services and Products accepting Faircoin </p>
 
 
 We would like to extend our thanks to all the people that supports this integration from Many countries!
