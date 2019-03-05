@@ -47690,6 +47690,23 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         reject(response);
       });
     });
+  },
+  submit_post: function submit_post(_ref11, _ref12) {
+    var commit = _ref11.commit;
+    var payload = _ref12.payload,
+        client = _ref12.client;
+
+    return new Promise(function (resolve, reject) {
+      client.database.call('comment', [payload, user]).then(function (response) {
+        //commit("set_comments_selected_post", response)
+
+        resolve(response);
+      }).catch(function (_ref13) {
+        var response = _ref13.response;
+
+        reject(response);
+      });
+    });
   }
 });
 
@@ -50532,7 +50549,7 @@ var render = function() {
                 "b-jumbotron",
                 {
                   attrs: {
-                    header: "Nodo Colmena",
+                    header: "Common Valor",
                     lead: "Lorem ipsum dolor sit amet"
                   }
                 },
@@ -53503,7 +53520,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.prueba[data-v-4a88fae4]{\n  margin-top: 30px;\n}\n", ""]);
 
 // exports
 
@@ -53518,6 +53535,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mavon_editor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_mavon_editor__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mavon_editor_dist_css_index_css__ = __webpack_require__(366);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mavon_editor_dist_css_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mavon_editor_dist_css_index_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(9);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+//
+//
+//
+//
 //
 //
 //
@@ -53554,10 +53578,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
+/* Example to configure mavon markdown editor: https://tech-blog.s-yoshiki.com/2018/10/687/
+Documentation of props configuration, mvaon: https://github.com/hinesboy/mavonEditor */
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "NewPost",
-
   data: function data() {
     return {
       post: { title: "New Post", body: "Hello there", tags: "" }
@@ -53567,6 +53593,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   components: {
     mavonEditor: __WEBPACK_IMPORTED_MODULE_0_mavon_editor__["mavonEditor"]
+  },
+
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapGetters */])({
+    client: "auth/client",
+    user: "auth/user"
+  })),
+
+  methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapActions */])({
+    submitPost: "posts/submit_post",
+    get_client: "auth/get_client"
+  }), {
+    submit: function submit(post) {
+      //console.log(post);
+      //console.log(this.user);
+      console.log(this.client);
+      console.log(this.user.access_token);
+      console.log(Object.entries(post));
+      //this.submitPost(post,this.client);
+    }
+  }),
+  created: function created() {
+    this.get_client();
   }
 });
 
@@ -53679,7 +53727,11 @@ var render = function() {
   return _c(
     "b-container",
     [
-      _c("b-row", [_c("b-col", [_c("h2", [_vm._v("New Post")])])], 1),
+      _c(
+        "b-row",
+        [_c("b-col", [_c("h2", [_vm._v("New Post")]), _vm._v(" "), _c("hr")])],
+        1
+      ),
       _vm._v(" "),
       _c(
         "b-row",
@@ -53712,6 +53764,7 @@ var render = function() {
             { attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "12" } },
             [
               _c("mavon-editor", {
+                attrs: { language: "en" },
                 model: {
                   value: _vm.post.body,
                   callback: function($$v) {
@@ -53753,9 +53806,31 @@ var render = function() {
       _c(
         "b-row",
         [
-          _c("b-col", [_c("b-button", [_vm._v("Save")])], 1),
+          _c(
+            "b-col",
+            [
+              _c("hr", { staticClass: "prueba" }),
+              _vm._v(" "),
+              _c(
+                "b-button",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.submit(_vm.post)
+                    }
+                  }
+                },
+                [_vm._v("Post")]
+              )
+            ],
+            1
+          ),
           _vm._v(" "),
-          _c("b-col", [_c("b-button", [_vm._v("Cancel")])], 1)
+          _c(
+            "b-col",
+            [_c("hr"), _vm._v(" "), _c("b-button", [_vm._v("Cancel")])],
+            1
+          )
         ],
         1
       )
