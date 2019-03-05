@@ -15,6 +15,7 @@ import Router from "vue-router";
 Vue.use(Router)
 export default new Router({
   //mode:"history", don't work :C
+  mode: "history",
   routes:[
     {
       path: '/landpage',

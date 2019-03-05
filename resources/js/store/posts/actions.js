@@ -59,4 +59,18 @@ export default {
     });
   },
 
+  submit_post({commit}, {payload, client}) {
+    return new Promise((resolve, reject) => {
+      client.database.call('comment', [payload, user])
+        .then((response) => {
+          //commit("set_comments_selected_post", response)
+
+          resolve(response);
+        })
+        .catch(({ response }) => {
+          reject(response)
+        })
+    });   
+  },
+
 }
