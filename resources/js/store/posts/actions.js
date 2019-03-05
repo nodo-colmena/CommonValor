@@ -9,26 +9,31 @@ export default {
     commit("set_filter", filter)
   },
 
-  get_posts({ commit }, { tag, filter, num, client }) {
+  async get_posts({ commit }, { tag, filter, num, client }) {
     const query = {
       tag: tag,
       limit: num,
-    };  //hace query
-    return new Promise((resolve, reject) => {
-      client.database.getDiscussions(filter, query)
-        .then((response) => {
-          response.forEach(post => {
+    };  //hace quer
+
+    client.database.getDiscussions(filter, query)
+      .then(result => {
+        console.log('Response received:', result);
+        if (result) {
+          result.forEach(post => {
             const json = JSON.parse(post.json_metadata); // body content
             post.image = json.image ? json.image[0] : "";
           })
-          commit("set_posts", response)
-          resolve(response);
-        })
-        .catch(({ response }) => {
-          reject(response)
-        })
-    });
+          commit("set_posts", result)
+        } else {
+          console.log('error');
+        }
+      })
+
+      .catch(err => {
+        console.log(err);
+      });
   },
+
 
   reset_counter({ commit }, number) {
     commit("set_contador", number)

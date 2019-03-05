@@ -7,7 +7,7 @@
     <!--TODO: charge dimension of pictures -->
     <b-link v-for="link in tags" :key="link.text">{{link}}</b-link>
     <!-- TODO: Style and link tags with filter tags in POST_LIST.vue-->
-    <div>{{comments[0].author }}</div>
+    <!-- <div>{{comments[0].author }}</div> -->
     <!-- TODO: Render structure for comments-->
     <!-- FIXME: Sometimes Author is Undefined-->
   </div>
