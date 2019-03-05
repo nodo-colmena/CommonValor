@@ -26400,7 +26400,7 @@ var render = function() {
           _c(
             "b-navbar-nav",
             [
-              _vm.user.username
+              _vm.user.username != null
                 ? _c(
                     "b-nav-item-dropdown",
                     { attrs: { right: "" } },
@@ -47443,6 +47443,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
   loginURL: function loginURL(state, getters) {
     return state.loginURL;
   }
+  //userToken: (state, getters) => state.user.access_token,
 });
 
 /***/ }),
@@ -47451,15 +47452,20 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
+
+  //User is a entity from SC2
   set_user: function set_user(state, user) {
     state.user = user;
+    state.api.setAccessToken(user.access_token);
   },
   unset_user: function unset_user(state) {
-    /* state.api.revokeToken(function(err,res){console.log(err+",,"+res)});*/
-    state.api.me(function (err, res) {
-      if (res) {
-        var user = JSON.stringify(res, undefined, 2);
-        console.log(user); //show datas of user client
+    state.api.revokeToken(function (err, res) {
+      if (res && res.success) {
+        //TODO: vuex states api.setAccessToken and user.acess_token dont reference null
+        //state.api.setAccessToken(null)
+        //state.user.access_token = null
+        state.user.name = null;
+        console.log('unset' + Object.entries(res));
       }
     });
   },
@@ -47469,7 +47475,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
   },
   initialize_api: function initialize_api(state, api) {
     state.api = api;
-    console.log(api);
     state.loginURL = api.getLoginURL();
   }
 });
@@ -52807,9 +52812,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
  */
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'login',
+  name: "login",
 
-  props: { //receive parameters via URL from steam login page, Definition of params in Vue-Router, app.js/routes
+  //data sesion of client from steemConnect
+  props: {
+    //receive parameters via URL from steam login page, Definition of params in Vue-Router, app.js/routes
     access_token: { default: "", type: String },
     expires_in: { default: "", type: String },
     username: { default: "", type: String }
@@ -52822,18 +52829,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   },
 
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])({ loginURL: 'auth/loginURL' })),
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])({ loginURL: "auth/loginURL" })),
 
   methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])({
-    login: 'auth/login',
-    logout: 'auth/logout',
-    initializeAPI: 'auth/initializeAPI'
+    login: "auth/login", //SteemConnect
+    logout: "auth/logout", //SteemConnect
+    initializeAPI: "auth/initializeAPI" //SteemConnect API
   })),
 
   created: function created() {
     this.initializeAPI(); //charge loginUrl and api instance
     if (this.access_token) {
-      this.login({
+      this.login({ ///actionLogin
+        //assign datas to Vuex
         access_token: this.access_token,
         username: this.username,
         expires_in: this.expires_in

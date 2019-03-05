@@ -9,7 +9,8 @@ export default {
   },
 
   logout({ commit }) {
-    commit("unset_user");
+    commit("unset_user")
+
   },
 
   get_client({ commit }) {

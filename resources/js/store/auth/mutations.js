@@ -1,15 +1,19 @@
 export default {
 
+  //User is a entity from SC2
   set_user(state, user) {
     state.user = user
+    state.api.setAccessToken(user.access_token);
   },
 
   unset_user(state) {
-    /* state.api.revokeToken(function(err,res){console.log(err+",,"+res)});*/
-    state.api.me(function (err, res) {
-      if (res) {
-        const user = JSON.stringify(res, undefined, 2);
-        console.log(user) //show datas of user client
+    state.api.revokeToken(function (err, res) {
+      if (res && res.success) {
+        //TODO: vuex states api.setAccessToken and user.acess_token dont reference null
+        //state.api.setAccessToken(null)
+        //state.user.access_token = null
+        state.user.name = null;
+        console.log('unset' + Object.entries(res))
       }
     });
   },
@@ -20,9 +24,7 @@ export default {
 
   initialize_api(state, api) {
     state.api = api
-    console.log(api)
-    state.loginURL = api.getLoginURL()
+    state.loginURL = api.getLoginURL();
+
   },
-
-
 }

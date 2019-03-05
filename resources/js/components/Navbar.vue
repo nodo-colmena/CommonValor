@@ -18,7 +18,7 @@
 
       <b-navbar-nav>
         <!-- comprobating if the user has been loged-->
-        <b-nav-item-dropdown v-if="user.username" right>
+        <b-nav-item-dropdown v-if="user.username!=null" right>
           <!-- FIXME:   ever true becouse in store/auth/user: is object idented != null-->
           <template slot="button-content">
             <em>{{user.username}}</em>
