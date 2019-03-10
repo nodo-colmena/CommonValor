@@ -59,19 +59,28 @@ export default {
     });
   },
 
-  submit_post({ commit }, { payload, client }) {
-    return new Promise((resolve, reject) => {
-      client.database.call('comment', [payload, user])
-        .then((response) => {
-          //commit("set_comments_selected_post", response)
-          console.log('response:', response);
-          resolve(response);
-        })
-        .catch((response ) => {
-          console.log('reject:', response);
-          reject(response)
-          
-        })
+  submit_post({ commit }, user) {
+    const account = user.user.username;
+    //get title
+    const title = user.post.title;
+    //get body
+    const body = user.post.body;
+    //get tags and convert to array list
+    const tags = user.post.tags;
+    console.log("tags: ", tags);
+    const taglist = tags.split(' ');
+    console.log("tags split: ", taglist);
+    //make simple json metadata including only tags
+    const json_metadata = JSON.stringify({ tags: taglist });
+    //generate random permanent link for post
+    const permlink = Math.random()
+        .toString(36)
+        .substring(2);
+    const parent_author = '';
+    const parent_permlink = taglist[0];
+    console.log("json", json_metadata);
+    user.api.comment(parent_author, parent_permlink, account, permlink, title, body, json_metadata, function (err, res) {
+      console.log(err, res)
     });
   },
 

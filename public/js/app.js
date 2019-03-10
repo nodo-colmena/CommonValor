@@ -47744,47 +47744,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
   submit_post: function submit_post(_ref11, user) {
     var commit = _ref11.commit;
 
-    console.log("Action printing:");
-    console.log(user.user.access_token);
-
-    //const posting_key = user.user.access_token;
-    var posting_key = user.user.access_token;
     var account = user.user.username;
-    var body = user.post.body;
+    //get title
     var title = user.post.title;
+    //get body
+    var body = user.post.body;
+    //get tags and convert to array list
     var tags = user.post.tags;
-    var taglist = user.post.tags.split(' ');
+    console.log("tags: ", tags);
+    var taglist = tags.split(' ');
+    console.log("tags split: ", taglist);
+    //make simple json metadata including only tags
     var json_metadata = JSON.stringify({ tags: taglist });
     //generate random permanent link for post
     var permlink = Math.random().toString(36).substring(2);
-
-    var payload = {
-      author: account,
-      body: body,
-      json_metadata: json_metadata,
-      parent_author: '',
-      parent_permlink: taglist[0],
-      permlink: permlink,
-      title: title
-    };
-
-    console.log('user.client.broadcast.comment:', payload);
-    user.api.api.comment(payload.parent_author, payload.parent_permlink, payload.author, payload.permlink, payload.title, payload.body, payload.json_metadata, function (err, res) {
+    var parent_author = '';
+    var parent_permlink = taglist[0];
+    console.log("json", json_metadata);
+    user.api.comment(parent_author, parent_permlink, account, permlink, title, body, json_metadata, function (err, res) {
       console.log(err, res);
     });
-    /*      return new Promise((resolve, reject) => {
-          user.client.broadcast.comment(payload, posting_key)
-            .then((response) => {
-              //commit("set_comments_selected_post", response)
-              console.log('response:', response);
-              resolve(response);
-            })
-            .catch((response ) => {
-              console.log('reject:', response);
-              reject(response)
-              
-            })
-        });  */
   }
 });
 
@@ -48632,10 +48611,6 @@ if (hadRuntime) {
   filter: 'trending',
   posts: [],
   contadorPost: 4,
-<<<<<<< HEAD
-
-=======
->>>>>>> c95e9e6e38d9ea2b749c9bca54c6e68f32f8ecb8
   //details_post section
   selected_post: {},
   comments_selected_post: []
@@ -49481,24 +49456,9 @@ function tokensToFunction (tokens) {
             continue
           } else {
             throw new TypeError('Expected "' + token.name + '" to not be empty')
-<<<<<<< HEAD
           }
         }
 
-        for (var j = 0; j < value.length; j++) {
-          segment = encode(value[j]);
-
-          if (!matches[i].test(segment)) {
-            throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`')
-=======
->>>>>>> c95e9e6e38d9ea2b749c9bca54c6e68f32f8ecb8
-          }
-
-          path += (j === 0 ? token.prefix : token.delimiter) + segment;
-        }
-
-<<<<<<< HEAD
-=======
         for (var j = 0; j < value.length; j++) {
           segment = encode(value[j]);
 
@@ -49509,7 +49469,6 @@ function tokensToFunction (tokens) {
           path += (j === 0 ? token.prefix : token.delimiter) + segment;
         }
 
->>>>>>> c95e9e6e38d9ea2b749c9bca54c6e68f32f8ecb8
         continue
       }
 
@@ -50173,7 +50132,6 @@ function matchRoute (
 
   return true
 }
-<<<<<<< HEAD
 
 function resolveRecordPath (path, record) {
   return resolvePath(path, record.parent ? record.parent.path : '/', true)
@@ -50210,44 +50168,6 @@ function handleScroll (
     return
   }
 
-=======
-
-function resolveRecordPath (path, record) {
-  return resolvePath(path, record.parent ? record.parent.path : '/', true)
-}
-
-/*  */
-
-var positionStore = Object.create(null);
-
-function setupScroll () {
-  // Fix for #1585 for Firefox
-  // Fix for #2195 Add optional third attribute to workaround a bug in safari https://bugs.webkit.org/show_bug.cgi?id=182678
-  window.history.replaceState({ key: getStateKey() }, '', window.location.href.replace(window.location.origin, ''));
-  window.addEventListener('popstate', function (e) {
-    saveScrollPosition();
-    if (e.state && e.state.key) {
-      setStateKey(e.state.key);
-    }
-  });
-}
-
-function handleScroll (
-  router,
-  to,
-  from,
-  isPop
-) {
-  if (!router.app) {
-    return
-  }
-
-  var behavior = router.options.scrollBehavior;
-  if (!behavior) {
-    return
-  }
-
->>>>>>> c95e9e6e38d9ea2b749c9bca54c6e68f32f8ecb8
   if (true) {
     assert(typeof behavior === 'function', "scrollBehavior must be a function");
   }
@@ -55328,11 +55248,7 @@ module.exports = __webpack_require__(392);
  * Local dependencies
  */
 
-<<<<<<< HEAD
-var assign       = __webpack_require__(8).assign;
-=======
 var assign       = __webpack_require__(9).assign;
->>>>>>> c95e9e6e38d9ea2b749c9bca54c6e68f32f8ecb8
 var Renderer     = __webpack_require__(393);
 var ParserCore   = __webpack_require__(395);
 var ParserBlock  = __webpack_require__(406);
@@ -55534,11 +55450,7 @@ module.exports.utils = __webpack_require__(9);
  * Local dependencies
  */
 
-<<<<<<< HEAD
-var utils = __webpack_require__(8);
-=======
 var utils = __webpack_require__(9);
->>>>>>> c95e9e6e38d9ea2b749c9bca54c6e68f32f8ecb8
 var rules = __webpack_require__(394);
 
 /**
@@ -62589,15 +62501,9 @@ module.exports.HTML_TAG_RE = HTML_TAG_RE;
 
 
 var entities          = __webpack_require__(69);
-<<<<<<< HEAD
-var has               = __webpack_require__(8).has;
-var isValidEntityCode = __webpack_require__(8).isValidEntityCode;
-var fromCodePoint     = __webpack_require__(8).fromCodePoint;
-=======
 var has               = __webpack_require__(9).has;
 var isValidEntityCode = __webpack_require__(9).isValidEntityCode;
 var fromCodePoint     = __webpack_require__(9).fromCodePoint;
->>>>>>> c95e9e6e38d9ea2b749c9bca54c6e68f32f8ecb8
 
 
 var DIGITAL_RE = /^&#((?:x[a-f0-9]{1,8}|[0-9]{1,8}));/i;

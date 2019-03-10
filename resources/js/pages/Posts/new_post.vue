@@ -65,7 +65,7 @@ export default {
   methods:{
     ...mapActions({
       submitPost: "posts/submit_post",
-      get_client: "auth/get_client"
+      get_client: "auth/get_client",
     }),
      
     submit(post){
@@ -97,6 +97,7 @@ export default {
   },
   created(){
     this.get_client();
+
   }
 };
 </script>
