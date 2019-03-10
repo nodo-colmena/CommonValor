@@ -3,7 +3,7 @@
     <b-row>
       <b-col>
         <h2>New Post</h2>
-        <hr></hr>
+        <hr>
       </b-col>
     </b-row>
     <b-row>
@@ -23,12 +23,11 @@
     </b-row>
     <b-row>
       <b-col>
-        <hr class="prueba"></hr>
+        <hr class="prueba">
         <b-button v-on:click="submit(post)">Post</b-button> 
-       <!--  <b-button>Post</b-button> -->
       </b-col>
       <b-col>
-        <hr></hr>
+        <hr>
         <b-button>Cancel</b-button>
       </b-col>
     </b-row>
@@ -47,6 +46,7 @@ export default {
   data() {
     return {
       post: { title: "New Post", body: "Hello there", tags: "" }
+      
     };
   },
 
@@ -57,7 +57,8 @@ export default {
   computed: {
     ...mapGetters({
       client: "auth/client",
-      user: "auth/user"
+      user: "auth/user",
+      api: "auth/api"
     })
   },
 
@@ -65,14 +66,33 @@ export default {
     ...mapActions({
       submitPost: "posts/submit_post",
       get_client: "auth/get_client"
-    }), 
-     submit(post){
-      //console.log(post);
-      //console.log(this.user);
-      console.log(this.client);
+    }),
+     
+    submit(post){
+/*       const payload = { p_client: {} , p_user: {}  };
+      payload.p_client = this.client;
+      payload.p_user = this.user;
+      console.log(payload.p_user.access_token);
+      console.log(payload.p_client); */
+/*       console.log(this.client);
       console.log(this.user.access_token);
       console.log(Object.entries(post));
-      //this.submitPost(post,this.client);
+      payload
+      this.submitPost(post,this.client, this.user); */
+      //this.submitPost(post,payload);
+      console.log(this.api);
+       this.submitPost({
+        post: post, 
+        user: this.user,
+        client: this.client,
+        api: this.api,
+        });      
+/*       console.log(this.user.username);
+      this.submitPost({
+        post: post, 
+        user: this.user,
+        client: this.client
+        }); */
     }
   },
   created(){
