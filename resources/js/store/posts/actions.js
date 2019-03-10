@@ -59,43 +59,9 @@ export default {
     });
   },
 
-
-
-  submit_post({commit}, user) {
-    console.log("Action printing:");
-    console.log(user.user.access_token);
-
-    //const posting_key = user.user.access_token;
-    const posting_key = user.user.access_token;
-    const account = user.user.username;
-    const body = user.post.body;
-    const title = user.post.title;
-    const tags = user.post.tags;
-    const taglist = user.post.tags.split(' ');
-    const json_metadata = JSON.stringify({ tags: taglist });
-    //generate random permanent link for post
-    const permlink = Math.random()
-        .toString(36)
-        .substring(2);
-
-    const payload = {
-        author: account,
-        body: body,
-        json_metadata: json_metadata,
-        parent_author: '',
-        parent_permlink: taglist[0],
-        permlink: permlink,
-        title: title,
-    }; 
-
-    console.log('user.client.broadcast.comment:', payload);
-    user.api.comment(payload.parent_author, 
-      payload.parent_permlink, payload.author, payload.permlink, 
-      payload.title, payload.body, payload.json_metadata, function (err, res) {
-      console.log(err, res)
-    });
-/*      return new Promise((resolve, reject) => {
-      user.client.broadcast.comment(payload, posting_key)
+  submit_post({ commit }, { payload, client }) {
+    return new Promise((resolve, reject) => {
+      client.database.call('comment', [payload, user])
         .then((response) => {
           //commit("set_comments_selected_post", response)
           console.log('response:', response);
@@ -106,7 +72,7 @@ export default {
           reject(response)
           
         })
-    });  */ 
+    });
   },
 
 }

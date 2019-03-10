@@ -2,10 +2,9 @@ export default {
   //post_list section
   tag: 'art',
   filter: 'trending',
-  posts:[],
+  posts: [],
   contadorPost: 4,
-
   //details_post section
-  selected_post:{},
-  comments_selected_post:[]
+  selected_post: {},
+  comments_selected_post: []
 }

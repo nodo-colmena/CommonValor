@@ -1,11 +1,11 @@
 <template>
-  <b-card bg-variant="dark" >
+  <b-card bg-variant="dark">
     <b-button :href="loginURL" variant="white">Login with Steem</b-button>
   </b-card>
 
   <!--<b-card text-variant="white">
     <b-button href="loginURL" variant="dark">Login with Steem</b-button>
-  </b-card> -->
+  </b-card>-->
 </template>
 
 <script>
@@ -21,49 +21,54 @@
     sesión exitoso da como resultado un inicio de sesión exitoso que devolverá la información de
     `access_token`,` expires_in` y `username`, qué su aplicación debera comenzará a utilizar.
  */
-import { mapActions, mapGetters, mapMutations } from 'vuex';
+import { mapActions, mapGetters, mapMutations } from "vuex";
 export default {
-    name:'login',
+  name: "login",
 
-    props: {  //receive parameters via URL from steam login page, Definition of params in Vue-Router, app.js/routes
-        access_token: {default: "", type: String},
-        expires_in: {default: "", type: String},
-        username: {default: "", type: String},
-    },
+  //data sesion of client from steemConnect
+  props: {
+    //receive parameters via URL from steam login page, Definition of params in Vue-Router, app.js/routes
+    access_token: { default: "", type: String },
+    expires_in: { default: "", type: String },
+    username: { default: "", type: String }
+  },
 
-    data() {
-      return {
-        card_color: {true: "info", false: "success"} ///???
-      }
-    },
+  data() {
+    return {
+      card_color: { true: "info", false: "success" } ///???
+    };
+  },
 
-    computed: {
-      ...mapGetters({ loginURL: 'auth/loginURL' }),
+  computed: {
+    ...mapGetters({
+      loginURL: "auth/loginURL"
+    })
+  },
 
-    },
+  methods: {
+    ...mapActions({
+      login: "auth/login", //SteemConnect
+      logout: "auth/logout", //SteemConnect
+      initializeAPI: "auth/initializeAPI" //SteemConnect API
+    }),
 
-    methods: {
-      ...mapActions({
-        login: 'auth/login',
-        logout: 'auth/logout',
-        initializeAPI: 'auth/initializeAPI'
-      })
-    },
+    get_infoUser() {}
+  },
 
-    created(){
-      this.initializeAPI() //charge loginUrl and api instance
-      if(this.access_token){
-        this.login({
-          access_token: this.access_token,
-          username: this.username,
-          expires_in: this.expires_in
-        })
-      }
+  created() {
+    this.initializeAPI(); //charge loginUrl and api instance
+    if (this.access_token) {
+      this.login({
+        ///actionLogin
+        access_token: this.access_token,
+        username: this.username,
+        expires_in: this.expires_in,
+        meData: null
+      });
     }
-
-}
+  }
+};
 </script>
 
 <style lang="scss">
-
 </style>

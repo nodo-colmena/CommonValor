@@ -4,6 +4,7 @@ export default {
     access_token: null,
     username: null,
     expires_in: null,
+    meData: null
   },
   //public client no sesion
   client: null,
