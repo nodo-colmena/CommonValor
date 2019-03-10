@@ -59,7 +59,7 @@ export default {
     });
   },
 
-  submit_post({commit}, {payload, client}) {
+  submit_post({ commit }, { payload, client }) {
     return new Promise((resolve, reject) => {
       client.database.call('comment', [payload, user])
         .then((response) => {
@@ -70,7 +70,7 @@ export default {
         .catch(({ response }) => {
           reject(response)
         })
-    });   
+    });
   },
 
 }

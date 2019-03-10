@@ -40,7 +40,9 @@ export default {
   },
 
   computed: {
-    ...mapGetters({ loginURL: "auth/loginURL" })
+    ...mapGetters({
+      loginURL: "auth/loginURL"
+    })
   },
 
   methods: {
@@ -48,17 +50,20 @@ export default {
       login: "auth/login", //SteemConnect
       logout: "auth/logout", //SteemConnect
       initializeAPI: "auth/initializeAPI" //SteemConnect API
-    })
+    }),
+
+    get_infoUser() {}
   },
 
   created() {
     this.initializeAPI(); //charge loginUrl and api instance
     if (this.access_token) {
-      this.login({ ///actionLogin
-        //assign datas to Vuex
+      this.login({
+        ///actionLogin
         access_token: this.access_token,
         username: this.username,
-        expires_in: this.expires_in
+        expires_in: this.expires_in,
+        meData: null
       });
     }
   }
@@ -66,5 +71,4 @@ export default {
 </script>
 
 <style lang="scss">
-
 </style>

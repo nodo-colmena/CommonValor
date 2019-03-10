@@ -44,7 +44,9 @@ export default {
     ...mapGetters({ user: "auth/user" })
   },
   methods: {
-    ...mapActions({ logout: "auth/logout" })
+    ...mapActions({
+      logout: "auth/logout"
+    })
   }
 };
 </script>

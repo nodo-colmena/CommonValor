@@ -2,16 +2,17 @@
   <div>
     <b-container grid-list-xs>
       <b-card
+        v-if="userInfo!=null"
         overlay
         style="max-height:10rem"
         img-src="https://picsum.photos/900/150/?image=36"
         img-alt="Card Image"
         class="text-center"
         text-variant="white"
-        title="Cti-BUAP"
-        sub-title="110 seguidores | 2posts | 10 siguiendo"
+        :title="userInfo.name"
+        sub-title="b"
       >
-        <p class="card-text">Mexico unio abril 2018</p>
+        <p class="card-text">Hello</p>
       </b-card>
     </b-container>
 
@@ -35,8 +36,27 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
-  name: "tabs"
+  name: "tabs",
+
+  methods: {
+    ...mapActions({
+      get_me: "auth/get_me"
+    })
+  },
+
+  computed: {
+    ...mapGetters({
+      userInfo: "auth/client_data",
+      apiCall: "auth/api"
+    })
+  },
+
+  created() {
+    this.get_me(this.apiCall); //obtiene datos de usuario logeado
+  }
 };
 </script>
 
