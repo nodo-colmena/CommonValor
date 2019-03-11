@@ -47742,21 +47742,28 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       });
     });
   },
-  submit_post: function submit_post(_ref11, _ref12) {
+  submit_post: function submit_post(_ref11, user) {
     var commit = _ref11.commit;
-    var payload = _ref12.payload,
-        client = _ref12.client;
 
-    return new Promise(function (resolve, reject) {
-      client.database.call('comment', [payload, user]).then(function (response) {
-        //commit("set_comments_selected_post", response)
-
-        resolve(response);
-      }).catch(function (_ref13) {
-        var response = _ref13.response;
-
-        reject(response);
-      });
+    var account = user.user.username;
+    //get title
+    var title = user.post.title;
+    //get body
+    var body = user.post.body;
+    //get tags and convert to array list
+    var tags = user.post.tags;
+    console.log("tags: ", tags);
+    var taglist = tags.split(' ');
+    console.log("tags split: ", taglist);
+    //make simple json metadata including only tags
+    var json_metadata = JSON.stringify({ tags: taglist });
+    //generate random permanent link for post
+    var permlink = Math.random().toString(36).substring(2);
+    var parent_author = '';
+    var parent_permlink = taglist[0];
+    console.log("json", json_metadata);
+    user.api.comment(parent_author, parent_permlink, account, permlink, title, body, json_metadata, function (err, res) {
+      console.log(err, res);
     });
   }
 });
@@ -54378,7 +54385,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
 
 
 
@@ -54391,6 +54397,7 @@ Documentation of props configuration, mvaon: https://github.com/hinesboy/mavonEd
   data: function data() {
     return {
       post: { title: "New Post", body: "Hello there", tags: "" }
+
     };
   },
 
@@ -54401,7 +54408,8 @@ Documentation of props configuration, mvaon: https://github.com/hinesboy/mavonEd
 
   computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapGetters */])({
     client: "auth/client",
-    user: "auth/user"
+    user: "auth/user",
+    api: "auth/api"
   })),
 
   methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapActions */])({
@@ -54409,12 +54417,30 @@ Documentation of props configuration, mvaon: https://github.com/hinesboy/mavonEd
     get_client: "auth/get_client"
   }), {
     submit: function submit(post) {
-      //console.log(post);
-      //console.log(this.user);
-      console.log(this.client);
-      console.log(this.user.access_token);
-      console.log(Object.entries(post));
-      //this.submitPost(post,this.client);
+      /*       const payload = { p_client: {} , p_user: {}  };
+            payload.p_client = this.client;
+            payload.p_user = this.user;
+            console.log(payload.p_user.access_token);
+            console.log(payload.p_client); */
+      /*       console.log(this.client);
+            console.log(this.user.access_token);
+            console.log(Object.entries(post));
+            payload
+            this.submitPost(post,this.client, this.user); */
+      //this.submitPost(post,payload);
+      console.log(this.api);
+      this.submitPost({
+        post: post,
+        user: this.user,
+        client: this.client,
+        api: this.api
+      });
+      /*       console.log(this.user.username);
+            this.submitPost({
+              post: post, 
+              user: this.user,
+              client: this.client
+              }); */
     }
   }),
   created: function created() {
