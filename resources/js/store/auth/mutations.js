@@ -8,7 +8,7 @@ export default {
 
   unset_user(state) {
     state.user = null;
-    state.api = null;
+    state.api.access_token = null;
   },
 
   set_client(state, client) { //generic public user for view posts
