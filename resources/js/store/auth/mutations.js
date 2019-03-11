@@ -7,15 +7,8 @@ export default {
   },
 
   unset_user(state) {
-    state.api.revokeToken(function (err, res) {
-      if (res && res.success) {
-        //TODO: vuex states api.setAccessToken and user.acess_token dont reference null
-        //state.api.setAccessToken(null)
-        //state.user.access_token = null
-        state.user.name = null;
-        console.log('unset' + Object.entries(res))
-      }
-    });
+    state.user = null;
+    state.api = null;
   },
 
   set_client(state, client) { //generic public user for view posts

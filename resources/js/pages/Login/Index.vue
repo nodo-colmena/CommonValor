@@ -59,7 +59,6 @@ export default {
     this.initializeAPI(); //charge loginUrl and api instance
     if (this.access_token) {
       this.login({
-        ///actionLogin
         access_token: this.access_token,
         username: this.username,
         expires_in: this.expires_in,

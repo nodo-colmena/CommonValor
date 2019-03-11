@@ -26288,7 +26288,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -26336,18 +26336,23 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
-//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navbar",
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])({ user: "auth/user" })),
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])({
+    user: "auth/user",
+    apiObject: "auth/api"
+  })),
   methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])({
     logout: "auth/logout"
-  }))
+  }), {
+    logExit: function logExit() {
+      this.logout(this.apiObject);
+    }
+  })
 });
 
 /***/ }),
@@ -26402,8 +26407,11 @@ var render = function() {
           _c(
             "b-navbar-nav",
             [
-              _vm.user.username != null
-                ? _c(
+              _vm.user === null || _vm.user.access_token === null
+                ? _c("b-button", { attrs: { href: "#/login" } }, [
+                    _vm._v("Login")
+                  ])
+                : _c(
                     "b-nav-item-dropdown",
                     { attrs: { right: "" } },
                     [
@@ -26422,15 +26430,12 @@ var render = function() {
                         [_vm._v("Profile")]
                       ),
                       _vm._v(" "),
-                      _c("b-dropdown-item", { on: { click: _vm.logout } }, [
+                      _c("b-dropdown-item", { on: { click: _vm.logExit } }, [
                         _vm._v("Signout")
                       ])
                     ],
                     2
                   )
-                : _c("b-button", { attrs: { href: "#/login" } }, [
-                    _vm._v("Login")
-                  ])
             ],
             1
           )
@@ -47390,10 +47395,15 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
       name: "landpage"
     });
   },
-  logout: function logout(_ref2) {
+  logout: function logout(_ref2, api) {
     var commit = _ref2.commit;
 
-    commit("unset_user");
+    api.revokeToken(function (err, res) {
+      if (res) {
+        console.log('unset' + Object.values(res));
+        commit("unset_user");
+      }
+    });
   },
   get_client: function get_client(_ref3) {
     var commit = _ref3.commit;
@@ -47424,8 +47434,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
     var commit = _ref5.commit;
 
     api.me(function (err, res) {
-      //const datass = JSON.stringify(res, undefined, 2)
-      //console.log('inside vuex : ' + datass)
       commit('me_data', res);
     });
   }
@@ -47475,15 +47483,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
     state.api.setAccessToken(user.access_token);
   },
   unset_user: function unset_user(state) {
-    state.api.revokeToken(function (err, res) {
-      if (res && res.success) {
-        //TODO: vuex states api.setAccessToken and user.acess_token dont reference null
-        //state.api.setAccessToken(null)
-        //state.user.access_token = null
-        state.user.name = null;
-        console.log('unset' + Object.entries(res));
-      }
-    });
+    state.user = null;
+    state.api = null;
   },
   set_client: function set_client(state, client) {
     //generic public user for view posts
@@ -52881,7 +52882,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     this.initializeAPI(); //charge loginUrl and api instance
     if (this.access_token) {
       this.login({
-        ///actionLogin
         access_token: this.access_token,
         username: this.username,
         expires_in: this.expires_in,

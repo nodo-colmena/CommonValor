@@ -17,18 +17,16 @@
       </b-navbar-nav>
 
       <b-navbar-nav>
-        <!-- comprobating if the user has been loged-->
-        <b-nav-item-dropdown v-if="user.username!=null" right>
-          <!-- FIXME:   ever true becouse in store/auth/user: is object idented != null-->
+        <!-- FIXME: -->
+        <b-button v-if="user===null || user.access_token === null" href="#/login">Login</b-button>
+        <b-nav-item-dropdown v-else right>
           <template slot="button-content">
             <em>{{user.username}}</em>
             <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
           </template>
           <b-dropdown-item href="#/panel_usr">Profile</b-dropdown-item>
-          <b-dropdown-item @click="logout">Signout</b-dropdown-item>
+          <b-dropdown-item @click="logExit">Signout</b-dropdown-item>
         </b-nav-item-dropdown>
-
-        <b-button v-else href="#/login">Login</b-button>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -41,12 +39,19 @@ export default {
   name: "Navbar",
 
   computed: {
-    ...mapGetters({ user: "auth/user" })
+    ...mapGetters({
+      user: "auth/user",
+      apiObject: "auth/api"
+    })
   },
   methods: {
     ...mapActions({
       logout: "auth/logout"
-    })
+    }),
+
+    logExit() {
+      this.logout(this.apiObject);
+    }
   }
 };
 </script>
