@@ -17,7 +17,6 @@
       </b-navbar-nav>
 
       <b-navbar-nav>
-        <!-- FIXME: -->
         <b-button v-if="user===null || user.access_token === null" href="#/login">Login</b-button>
         <b-nav-item-dropdown v-else right>
           <template slot="button-content">
