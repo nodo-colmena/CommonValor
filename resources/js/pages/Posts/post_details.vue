@@ -1,5 +1,6 @@
 <template>
   <div>
+  <!-- Content here -->
     <h2 center="true">{{post_selected.title}}</h2>
     <h4>{{post_selected.author}} date: {{date}}</h4>
     <!-- TODO:Styles of structure post-->
@@ -10,10 +11,12 @@
     <!-- <div>{{comments[0].author }}</div> -->
     <!-- TODO: Render structure for comments-->
     <!-- FIXME: Sometimes Author is Undefined-->
-  </div>
+    <comments/>
+    </div>
 </template>
 
 <script>
+import comments from "./comments.vue";
 import { mapActions, mapGetters, mapMutations } from "vuex";
 
 export default {
@@ -25,6 +28,10 @@ export default {
       date: "",
       tags: []
     };
+  },
+
+  components: {
+    comments
   },
 
   computed: {
@@ -59,6 +66,7 @@ export default {
       const Remarkable = require("remarkable"); //Convert json to markdown
       const md = new Remarkable({ html: true, linkify: true });
       this.body = md.render(this.post_selected.body);
+      console.log("POST:" + this.post_selected.body);
     },
 
     get_date() {

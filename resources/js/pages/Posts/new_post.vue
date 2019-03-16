@@ -66,6 +66,7 @@ export default {
     ...mapActions({
       submitPost: "posts/submit_post",
       get_client: "auth/get_client",
+      get_selected_post: "posts/get_selected_post"
     }),
      
     submit(post){
@@ -87,13 +88,23 @@ export default {
         client: this.client,
         api: this.api,
         });      
+
+        
 /*       console.log(this.user.username);
       this.submitPost({
         post: post, 
         user: this.user,
         client: this.client
         }); */
-    }
+    },
+     /* charge_post() {
+      //cargar detalle de post y creacion de url personalizada
+      //this.$router.push({path:'/post',params:{'url':'url'}})
+      const p = this.post;
+      this.$router.push({ path: "/post/" + p.permlink });
+      this.get_selected_post(p);
+      //console.log(this.post_selected)
+    }, */
   },
   created(){
     this.get_client();

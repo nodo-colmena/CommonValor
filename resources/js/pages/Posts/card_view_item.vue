@@ -42,6 +42,7 @@
                 </li>
                 <li class="foott">
                   <a>reesteemeado</a>
+                  <b-button>Vote</b-button>
                 </li>
               </ul>
             </b-row>
