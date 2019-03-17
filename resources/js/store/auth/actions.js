@@ -8,8 +8,13 @@ export default {
     });
   },
 
-  logout({ commit }) {
-    commit("unset_user")
+  logout({ commit }, api) {
+    api.revokeToken(function (err, res) {
+      if (res) {
+        console.log('unset' + Object.values(res))
+        commit("unset_user")
+      }
+    });
   },
 
   get_client({ commit }) {
@@ -37,8 +42,6 @@ export default {
 
   get_me({ commit }, api) {
     api.me(function (err, res) {
-      //const datass = JSON.stringify(res, undefined, 2)
-      //console.log('inside vuex : ' + datass)
       commit('me_data', res)
     })
   }
