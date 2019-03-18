@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-card class="card" v-on:click="charge_post">
-      <b-container class="bv-example-row">
+    <b-container class="bv-example-row">
+    <b-card class="card" v-on:click="charge_post">     
         <b-row>
           <b-col sm="12" class="headers">
             <div>
@@ -47,9 +47,9 @@
               </ul>
             </b-row>
           </b-col>
-        </b-row>
-      </b-container>
+        </b-row>   
     </b-card>
+  </b-container>
   </div>
 </template>
 

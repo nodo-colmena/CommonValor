@@ -7,7 +7,7 @@
 <script>
 import Navbar from "../components/Navbar.vue"
 export default {
-  name: 'NoFlexbox',
+  name: 'no-flexbox',
   components: {
     Navbar
   }

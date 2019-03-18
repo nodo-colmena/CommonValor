@@ -1,5 +1,5 @@
 <template>
-<div class="card">
+<div class="c_card">
     <img class="avatar" :src="c_picture">
         <div class="infos">
           <div class="name capitalize">
@@ -51,7 +51,7 @@ created(){
 $global_gap: 10px;
 $shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 $shadow_hover: 0 6px 10px rgba(0,0,0,0.16), 0 6px 10px rgba(0,0,0,0.23);
-.card {
+.c_card {
     width: 470px;
     min-height: 185px;
     display: flex;
