@@ -47774,6 +47774,19 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     user.api.comment(parent_author, parent_permlink, account, permlink, title, body, json_metadata, function (err, res) {
       console.log(err, res);
     });
+  },
+  vote_post: function vote_post(_ref12, user) {
+    var commit = _ref12.commit;
+
+    var voter = user.user.username;
+    var author = user.post.author;
+    var permlink = user.post.permlink;
+    var weight = 50;
+    var api = user.api;
+
+    api.vote(voter, author, permlink, weight, function (err, res) {
+      console.log(err, res);
+    });
   }
 });
 
@@ -53541,8 +53554,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       required: true
     }
   },
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])({
+    client: "auth/client",
+    user: "auth/user",
+    api: "auth/api"
+  })),
   methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])({
-    get_selected_post: "posts/get_selected_post"
+    get_selected_post: "posts/get_selected_post",
+    set_vote: "posts/vote_post"
   }), {
     charge_post: function charge_post() {
       //cargar detalle de post y creacion de url personalizada
@@ -53551,6 +53570,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       this.$router.push({ path: "/post/" + p.permlink });
       this.get_selected_post(p);
       //console.log(this.post_selected)
+    },
+    vote_post: function vote_post() {
+      this.set_vote({
+        user: this.user,
+        client: this.client,
+        api: this.api,
+        post: this.post
+      });
     }
   })
 });
@@ -53663,7 +53690,14 @@ var render = function() {
                             [
                               _c("a", [_vm._v("reesteemeado")]),
                               _vm._v(" "),
-                              _c("b-button", [_vm._v("Vote")])
+                              _c(
+                                "b-button",
+                                {
+                                  staticClass: "vote_button",
+                                  on: { click: _vm.vote_post }
+                                },
+                                [_vm._v("Vote")]
+                              )
                             ],
                             1
                           )

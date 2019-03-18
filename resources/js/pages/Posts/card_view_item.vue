@@ -42,7 +42,7 @@
                 </li>
                 <li class="foott">
                   <a>reesteemeado</a>
-                  <b-button>Vote</b-button>
+                  <b-button class="vote_button" v-on:click="vote_post">Vote</b-button>
                 </li>
               </ul>
             </b-row>
@@ -68,9 +68,17 @@ export default {
       required: true
     }
   },
+  computed: {
+    ...mapGetters({
+      client: "auth/client",
+      user: "auth/user",
+      api: "auth/api"
+    })
+  },
   methods: {
     ...mapActions({
-      get_selected_post: "posts/get_selected_post"
+      get_selected_post: "posts/get_selected_post",
+      set_vote: "posts/vote_post",
     }),
     charge_post() {
       //cargar detalle de post y creacion de url personalizada
@@ -79,6 +87,14 @@ export default {
       this.$router.push({ path: "/post/" + p.permlink });
       this.get_selected_post(p);
       //console.log(this.post_selected)
+    },
+    vote_post(){
+      this.set_vote({
+        user: this.user,
+        client: this.client,
+        api: this.api,
+        post: this.post,        
+      });
     }
   }
 };

@@ -84,4 +84,16 @@ export default {
     });
   },
 
+  vote_post({ commit }, user){
+    const voter = user.user.username;
+    const author = user.post.author;
+    const permlink = user.post.permlink;
+    const weight = 50;
+    const api = user.api;
+
+    api.vote(voter, author, permlink, weight, function (err, res) {
+      console.log(err, res)
+    });
+  }
+
 }
