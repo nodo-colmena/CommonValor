@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-container class="bv-example-row">
-    <b-card class="card" v-on:click="charge_post">     
+      <b-card class="card" v-on:click="charge_post">
         <b-row>
           <b-col sm="12" class="headers">
             <div>
@@ -48,9 +48,9 @@
               </ul>
             </b-row>
           </b-col>
-        </b-row>   
-    </b-card>
-  </b-container>
+        </b-row>
+      </b-card>
+    </b-container>
   </div>
 </template>
 
@@ -61,7 +61,7 @@ export default {
 
   data() {
     return {
-      p_img: "",
+      p_img: ""
     };
   },
 
@@ -98,26 +98,24 @@ export default {
       this.get_selected_post(p);
       //console.log(this.post_selected)
     },
-    vote_post(){
+    vote_post() {
       this.set_vote({
         user: this.user,
         client: this.client,
         api: this.api,
-        post: this.post,        
+        post: this.post
       });
     },
+
+    bringAuthorDatas() {
+      this.get_author_info({ client: this.client, username: this.post.author });
+    }
   },
-  created(){
+
+  created() {
     //request to public client
     this.get_client();
-    this.get_author_info({
-      client: this.client,
-      username: this.post.author,
-    });
-  },
-  mounted(){
-    console.log(this.get_author_info({client: this.client, username: this.post.author,
-    }).then(function(data) { console.log("dataaa", data) }));
+    this.bringAuthorDatas();
   }
 };
 </script>

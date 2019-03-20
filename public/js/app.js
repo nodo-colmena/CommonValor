@@ -47791,23 +47791,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
   get_author_info: function () {
     var _ref14 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(_ref13, user) {
       var commit = _ref13.commit;
-      var accSearch, max;
+      var accSearch, max, autor;
       return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
               accSearch = user.username;
               max = 1;
-              /*      const _accounts =  */
-              /* const _accounts = await user.client.database.call('lookup_accounts',[accSearch, max]); */
-
-              _context2.t0 = commit;
-              _context2.next = 5;
+              _context2.next = 4;
               return user.client.database.call('lookup_accounts', [accSearch, max]);
 
-            case 5:
-              _context2.t1 = _context2.sent;
-              (0, _context2.t0)("SET_AUTHOR_INFO", _context2.t1);
+            case 4:
+              autor = _context2.sent;
+
+              console.log(autor);
+              commit("SET_AUTHOR_INFO", autor);
 
             case 7:
             case "end":
@@ -48661,7 +48659,6 @@ if (hadRuntime) {
   },
   SET_AUTHOR_INFO: function SET_AUTHOR_INFO(state, author_object) {
     state.author_info = author_object;
-    console.log(author_object);
   }
 });
 
@@ -53632,21 +53629,16 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         api: this.api,
         post: this.post
       });
+    },
+    bringAuthorDatas: function bringAuthorDatas() {
+      this.get_author_info({ client: this.client, username: this.post.author });
     }
   }),
+
   created: function created() {
     //request to public client
     this.get_client();
-    this.get_author_info({
-      client: this.client,
-      username: this.post.author
-    });
-  },
-  mounted: function mounted() {
-    console.log(this.get_author_info({ client: this.client, username: this.post.author
-    }).then(function (data) {
-      console.log("dataaa", data);
-    }));
+    this.bringAuthorDatas();
   }
 });
 

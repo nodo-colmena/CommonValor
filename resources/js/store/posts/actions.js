@@ -74,8 +74,8 @@ export default {
     const json_metadata = JSON.stringify({ tags: taglist });
     //generate random permanent link for post
     const permlink = Math.random()
-        .toString(36)
-        .substring(2);
+      .toString(36)
+      .substring(2);
     const parent_author = '';
     const parent_permlink = taglist[0];
     console.log("json", json_metadata);
@@ -84,7 +84,7 @@ export default {
     });
   },
 
-  vote_post({ commit }, user){
+  vote_post({ commit }, user) {
     const voter = user.user.username;
     const author = user.post.author;
     const permlink = user.post.permlink;
@@ -96,12 +96,12 @@ export default {
     });
   },
 
-  async get_author_info({ commit }, user){
-      const accSearch = user.username;
-      const max = 1;
- /*      const _accounts =  */
-      /* const _accounts = await user.client.database.call('lookup_accounts',[accSearch, max]); */
-      commit("SET_AUTHOR_INFO", await user.client.database.call('lookup_accounts',[accSearch, max]));  
-  }, 
+  async get_author_info({ commit }, user) {
+    const accSearch = user.username;
+    const max = 1;
+    const autor = await user.client.database.call('lookup_accounts', [accSearch, max]);
+    console.log(autor);
+    commit("SET_AUTHOR_INFO", autor);
+  },
 
 }
