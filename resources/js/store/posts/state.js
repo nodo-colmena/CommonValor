@@ -6,5 +6,6 @@ export default {
   contadorPost: 4,
   //details_post section
   selected_post: {},
-  comments_selected_post: []
+  comments_selected_post: [],
+  author_info: {},
 }

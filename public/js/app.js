@@ -26257,7 +26257,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'NoFlexbox',
+  name: 'no-flexbox',
   components: {
     Navbar: __WEBPACK_IMPORTED_MODULE_0__components_Navbar_vue___default.a
   }
@@ -47787,7 +47787,42 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     api.vote(voter, author, permlink, weight, function (err, res) {
       console.log(err, res);
     });
-  }
+  },
+  get_author_info: function () {
+    var _ref14 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(_ref13, user) {
+      var commit = _ref13.commit;
+      var accSearch, max;
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              accSearch = user.username;
+              max = 1;
+              /*      const _accounts =  */
+              /* const _accounts = await user.client.database.call('lookup_accounts',[accSearch, max]); */
+
+              _context2.t0 = commit;
+              _context2.next = 5;
+              return user.client.database.call('lookup_accounts', [accSearch, max]);
+
+            case 5:
+              _context2.t1 = _context2.sent;
+              (0, _context2.t0)("SET_AUTHOR_INFO", _context2.t1);
+
+            case 7:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, this);
+    }));
+
+    function get_author_info(_x3, _x4) {
+      return _ref14.apply(this, arguments);
+    }
+
+    return get_author_info;
+  }()
 });
 
 /***/ }),
@@ -48594,6 +48629,9 @@ if (hadRuntime) {
   },
   comments_selected_post: function comments_selected_post(state, getters) {
     return state.comments_selected_post;
+  },
+  author_information: function author_information(state, getters) {
+    return state.author_info;
   }
 });
 
@@ -48620,6 +48658,10 @@ if (hadRuntime) {
   },
   set_comments_selected_post: function set_comments_selected_post(state, comments) {
     state.comments_selected_post = comments;
+  },
+  SET_AUTHOR_INFO: function SET_AUTHOR_INFO(state, author_object) {
+    state.author_info = author_object;
+    console.log(author_object);
   }
 });
 
@@ -48636,7 +48678,8 @@ if (hadRuntime) {
   contadorPost: 4,
   //details_post section
   selected_post: {},
-  comments_selected_post: []
+  comments_selected_post: [],
+  author_info: {}
 });
 
 /***/ }),
@@ -53539,10 +53582,18 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "card_view_item",
+
+  data: function data() {
+    return {
+      p_img: ""
+    };
+  },
+
 
   props: {
     post: {
@@ -53557,11 +53608,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])({
     client: "auth/client",
     user: "auth/user",
-    api: "auth/api"
+    api: "auth/api",
+    author: "posts/author_information"
   })),
   methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])({
     get_selected_post: "posts/get_selected_post",
-    set_vote: "posts/vote_post"
+    set_vote: "posts/vote_post",
+    get_client: "auth/get_client",
+    get_author_info: "posts/get_author_info"
   }), {
     charge_post: function charge_post() {
       //cargar detalle de post y creacion de url personalizada
@@ -53579,7 +53633,21 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         post: this.post
       });
     }
-  })
+  }),
+  created: function created() {
+    //request to public client
+    this.get_client();
+    this.get_author_info({
+      client: this.client,
+      username: this.post.author
+    });
+  },
+  mounted: function mounted() {
+    console.log(this.get_author_info({ client: this.client, username: this.post.author
+    }).then(function (data) {
+      console.log("dataaa", data);
+    }));
+  }
 });
 
 /***/ }),
@@ -53594,12 +53662,12 @@ var render = function() {
     "div",
     [
       _c(
-        "b-card",
-        { staticClass: "card", on: { click: _vm.charge_post } },
+        "b-container",
+        { staticClass: "bv-example-row" },
         [
           _c(
-            "b-container",
-            { staticClass: "bv-example-row" },
+            "b-card",
+            { staticClass: "card", on: { click: _vm.charge_post } },
             [
               _c(
                 "b-row",
@@ -53609,12 +53677,10 @@ var render = function() {
                       "div",
                       [
                         _c("b-img", {
-                          staticClass: "m-1",
                           attrs: {
-                            blank: "",
                             width: "20",
                             height: "20",
-                            "blank-color": "#777"
+                            src: this.author.img
                           }
                         }),
                         _vm._v(" "),
@@ -55451,7 +55517,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(456)
+  __webpack_require__(397)
 }
 var normalizeComponent = __webpack_require__(3)
 /* script */
@@ -55496,8 +55562,46 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 397 */,
-/* 398 */,
+/* 397 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(398);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("22f3b432", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-62200035\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./card_comment.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-62200035\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./card_comment.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 398 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.c_card {\n  width: 470px;\n  min-height: 185px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 10px;\n  border-radius: 5px;\n  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\n          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\n  background: rgba(255, 255, 255, 0.8);\n}\n.c_card .avatar {\n    width: 100px;\n    height: 100px;\n    margin-right: 10px;\n    border-radius: 50%;\n}\n.c_card .infos {\n    -webkit-box-flex: 1;\n        -ms-flex: 1 1 auto;\n            flex: 1 1 auto;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n}\n.c_card .infos div:not(:last-child) {\n      margin-bottom: 10px;\n}\n.c_card .infos div:not(:last-child).capitalize {\n        text-transform: capitalize;\n}\n.c_card .infos div:not(:last-child).name {\n        font-size: 150%;\n        font-weight: bold;\n}\n.c_card .infos div:not(:last-child) i {\n        margin-right: 10px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
 /* 399 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63076,7 +63180,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card" }, [
+  return _c("div", { staticClass: "c_card" }, [
     _c("img", { staticClass: "avatar", attrs: { src: _vm.c_picture } }),
     _vm._v(" "),
     _c("div", { staticClass: "infos" }, [
@@ -63193,47 +63297,6 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 455 */,
-/* 456 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(457);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("22f3b432", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-62200035\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./card_comment.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-62200035\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./card_comment.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 457 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.card {\n  width: 470px;\n  min-height: 185px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 10px;\n  border-radius: 5px;\n  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\n          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);\n  background: rgba(255, 255, 255, 0.8);\n}\n.card .avatar {\n    width: 100px;\n    height: 100px;\n    margin-right: 10px;\n    border-radius: 50%;\n}\n.card .infos {\n    -webkit-box-flex: 1;\n        -ms-flex: 1 1 auto;\n            flex: 1 1 auto;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n}\n.card .infos div:not(:last-child) {\n      margin-bottom: 10px;\n}\n.card .infos div:not(:last-child).capitalize {\n        text-transform: capitalize;\n}\n.card .infos div:not(:last-child).name {\n        font-size: 150%;\n        font-weight: bold;\n}\n.card .infos div:not(:last-child) i {\n        margin-right: 10px;\n}\n", ""]);
-
-// exports
-
 
 /***/ })
 /******/ ]);

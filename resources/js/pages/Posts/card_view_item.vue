@@ -5,7 +5,8 @@
         <b-row>
           <b-col sm="12" class="headers">
             <div>
-              <b-img blank width="20" height="20" blank-color="#777" class="m-1"/>
+              <b-img width="20" height="20" :src="this.author.img"/>
+              <!-- <b-img blank width="20" height="20" blank-color="#777" class="m-1"/> -->
               <a>{{post.author}}</a>
               <a>(90)</a>
               <a>en {{tag}}</a>
@@ -58,6 +59,12 @@ import { mapActions, mapGetters, mapMutations } from "vuex";
 export default {
   name: "card_view_item",
 
+  data() {
+    return {
+      p_img: "",
+    };
+  },
+
   props: {
     post: {
       type: Object,
@@ -72,13 +79,16 @@ export default {
     ...mapGetters({
       client: "auth/client",
       user: "auth/user",
-      api: "auth/api"
+      api: "auth/api",
+      author: "posts/author_information"
     })
   },
   methods: {
     ...mapActions({
       get_selected_post: "posts/get_selected_post",
       set_vote: "posts/vote_post",
+      get_client: "auth/get_client",
+      get_author_info: "posts/get_author_info"
     }),
     charge_post() {
       //cargar detalle de post y creacion de url personalizada
@@ -95,7 +105,19 @@ export default {
         api: this.api,
         post: this.post,        
       });
-    }
+    },
+  },
+  created(){
+    //request to public client
+    this.get_client();
+    this.get_author_info({
+      client: this.client,
+      username: this.post.author,
+    });
+  },
+  mounted(){
+    console.log(this.get_author_info({client: this.client, username: this.post.author,
+    }).then(function(data) { console.log("dataaa", data) }));
   }
 };
 </script>

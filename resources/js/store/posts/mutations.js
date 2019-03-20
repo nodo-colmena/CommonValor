@@ -17,4 +17,8 @@ export default {
   set_comments_selected_post(state, comments) {
     state.comments_selected_post = comments
   },
+  SET_AUTHOR_INFO(state, author_object){
+    state.author_info = author_object
+    console.log(author_object)
+  }
 }

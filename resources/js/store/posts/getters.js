@@ -5,4 +5,5 @@ export default {
   contadorPost: (state, getters) => state.contadorPost,
   selected_post: (state, getters) => state.selected_post,
   comments_selected_post: (state, getters) => state.comments_selected_post,
+  author_information: (state, getters) => state.author_info,
 }

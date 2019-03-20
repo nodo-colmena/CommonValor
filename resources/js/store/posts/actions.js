@@ -94,6 +94,14 @@ export default {
     api.vote(voter, author, permlink, weight, function (err, res) {
       console.log(err, res)
     });
-  }
+  },
+
+  async get_author_info({ commit }, user){
+      const accSearch = user.username;
+      const max = 1;
+ /*      const _accounts =  */
+      /* const _accounts = await user.client.database.call('lookup_accounts',[accSearch, max]); */
+      commit("SET_AUTHOR_INFO", await user.client.database.call('lookup_accounts',[accSearch, max]));  
+  }, 
 
 }
