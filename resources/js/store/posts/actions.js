@@ -104,8 +104,17 @@ export default {
 
     const json = JSON.parse(autor[0].json_metadata); // body content
     const image = json.profile.profile_image;
-    console.log(json.toString())
-    commit("SET_AUTHOR_INFO", image);
+    console.log(json.toString());
+    const reputation = autor[0].author_reputation;
+    const author_obj = {
+      a_image: image,
+      a_reputation,
+
+    };
+    author_obj.a_image = image;
+    author_obj.a_reputation = reputation;
+
+    commit("SET_AUTHOR_INFO", author_obj);
   },
 
 }

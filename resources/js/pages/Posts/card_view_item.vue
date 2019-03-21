@@ -5,7 +5,7 @@
         <b-row>
           <b-col sm="12" class="headers">
             <div>
-              <b-img width="20" height="20" :src="this.author"/>
+              <b-img width="20" height="20" :src="this.author.img"/>
               <!-- <b-img blank width="20" height="20" blank-color="#777" class="m-1"/> -->
               <a>{{post.author}}</a>
               <a>(90)</a>

@@ -47791,7 +47791,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
   get_author_info: function () {
     var _ref14 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(_ref13, user) {
       var commit = _ref13.commit;
-      var accSearch, max, autor, json, image;
+      var accSearch, max, autor, json, image, reputation, author_obj;
       return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
@@ -47811,9 +47811,19 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
               image = json.profile.profile_image;
 
               console.log(json.toString());
-              commit("SET_AUTHOR_INFO", image);
+              reputation = autor[0].author_reputation;
+              author_obj = {
+                a_image: image,
+                a_reputation: a_reputation
 
-            case 10:
+              };
+
+              author_obj.a_image = image;
+              author_obj.a_reputation = reputation;
+
+              commit("SET_AUTHOR_INFO", author_obj);
+
+            case 14:
             case "end":
               return _context2.stop();
           }
@@ -48664,7 +48674,9 @@ if (hadRuntime) {
     state.comments_selected_post = comments;
   },
   SET_AUTHOR_INFO: function SET_AUTHOR_INFO(state, author_object) {
-    state.author_info = author_object;
+    state.author_info.img = author_object.a_image;
+    state.author_info.reputation = author_object.a_reputation;
+    console.log(author_object);
   }
 });
 
@@ -48682,7 +48694,10 @@ if (hadRuntime) {
   //details_post section
   selected_post: {},
   comments_selected_post: [],
-  author_info: {}
+  author_info: {
+    img: "",
+    reputation: ""
+  }
 });
 
 /***/ }),
@@ -53675,7 +53690,11 @@ var render = function() {
                       "div",
                       [
                         _c("b-img", {
-                          attrs: { width: "20", height: "20", src: this.author }
+                          attrs: {
+                            width: "20",
+                            height: "20",
+                            src: this.author.img
+                          }
                         }),
                         _vm._v(" "),
                         _c("a", [_vm._v(_vm._s(_vm.post.author))]),

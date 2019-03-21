@@ -7,5 +7,8 @@ export default {
   //details_post section
   selected_post: {},
   comments_selected_post: [],
-  author_info: {},
+  author_info: {
+    img: "",
+    reputation: "",
+  },
 }
