@@ -99,9 +99,13 @@ export default {
   async get_author_info({ commit }, user) {
     const accSearch = user.username;
     const max = 1;
-    const autor = await user.client.database.call('lookup_accounts', [accSearch, max]);
-    console.log(autor);
-    commit("SET_AUTHOR_INFO", autor);
+    const autor = await user.client.database.call('get_accounts', [[accSearch],]);
+    console.log(Object.values(autor[0]));
+
+    const json = JSON.parse(autor[0].json_metadata); // body content
+    const image = json.profile.profile_image;
+    console.log(json.toString())
+    commit("SET_AUTHOR_INFO", image);
   },
 
 }

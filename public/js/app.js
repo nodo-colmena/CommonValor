@@ -47791,7 +47791,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
   get_author_info: function () {
     var _ref14 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(_ref13, user) {
       var commit = _ref13.commit;
-      var accSearch, max, autor;
+      var accSearch, max, autor, json, image;
       return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
@@ -47799,15 +47799,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
               accSearch = user.username;
               max = 1;
               _context2.next = 4;
-              return user.client.database.call('lookup_accounts', [accSearch, max]);
+              return user.client.database.call('get_accounts', [[accSearch]]);
 
             case 4:
               autor = _context2.sent;
 
-              console.log(autor);
-              commit("SET_AUTHOR_INFO", autor);
+              console.log(Object.values(autor[0]));
 
-            case 7:
+              json = JSON.parse(autor[0].json_metadata); // body content
+
+              image = json.profile.profile_image;
+
+              console.log(json.toString());
+              commit("SET_AUTHOR_INFO", image);
+
+            case 10:
             case "end":
               return _context2.stop();
           }
@@ -53669,11 +53675,7 @@ var render = function() {
                       "div",
                       [
                         _c("b-img", {
-                          attrs: {
-                            width: "20",
-                            height: "20",
-                            src: this.author.img
-                          }
+                          attrs: { width: "20", height: "20", src: this.author }
                         }),
                         _vm._v(" "),
                         _c("a", [_vm._v(_vm._s(_vm.post.author))]),
