@@ -93,6 +93,8 @@ export default {
     });
   },
 
+  //Save Author of POST complet object
+  //Only invoke in Profile of author Or details POST
   async get_author_info({ commit }, user) {
     const accSearch = user.username;
     const max = 1;

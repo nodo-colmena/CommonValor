@@ -44,7 +44,6 @@ export default {
 
     get_filtered_posts() {
       //call action - bring posts
-      //console.log(this.client) //TODO: BORRAR ESTO
       this.get_posts({
         tag: this.tag,
         filter: this.filter,

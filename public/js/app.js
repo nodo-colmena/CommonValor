@@ -47792,6 +47792,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       console.log(err, res);
     });
   },
+
+
+  //Save Author of POST complet object
+  //Only invoke in Profile of author Or details POST
   get_author_info: function () {
     var _ref14 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(_ref13, user) {
       var commit = _ref13.commit;
@@ -53374,7 +53378,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   }), {
     get_filtered_posts: function get_filtered_posts() {
       //call action - bring posts
-      //console.log(this.client) //TODO: BORRAR ESTO
       this.get_posts({
         tag: this.tag,
         filter: this.filter,
@@ -53583,7 +53586,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -53626,6 +53628,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       this.$router.push({ path: "/post/" + p.permlink });
       this.get_selected_post(p);
       //console.log(this.post_selected)
+      //TODO: Pass reputation, Image author with PROPS to post_details Component
+    },
+    date_format: function date_format() {
+      //TODO: ADD Moments.js to date format
+      //Use post.created this parameter have the date
     },
     vote_post: function vote_post() {
       this.set_vote({

@@ -6,7 +6,6 @@
           <b-col sm="12" class="headers">
             <div>
               <b-img width="20" height="20" :src="this.image"/>
-              <!-- <b-img blank width="20" height="20" blank-color="#777" class="m-1"/> -->
               <a>{{post.author}}</a>
               <a>{{reputacion}}</a>
               <a>en {{tag}}</a>
@@ -23,8 +22,8 @@
           <b-col sm="9">
             <div>
               <h5>{{post.title}}</h5>
-              <!--<strong>{{ post_item.title}}</strong>  -->
               <p class="card-text">
+                <!-- TODO:change THIS -->
                 This card has supporting text below as a natural lead-in
                 to additional content.
               </p>
@@ -91,6 +90,7 @@ export default {
       get_client: "auth/get_client",
       get_author_info: "posts/get_author_info"
     }),
+
     charge_post() {
       //cargar detalle de post y creacion de url personalizada
       //this.$router.push({path:'/post',params:{'url':'url'}})
@@ -98,7 +98,14 @@ export default {
       this.$router.push({ path: "/post/" + p.permlink });
       this.get_selected_post(p);
       //console.log(this.post_selected)
+      //TODO: Pass reputation, Image author with PROPS to post_details Component
     },
+
+    date_format() {
+      //TODO: ADD Moments.js to date format
+      //Use post.created this parameter have the date
+    },
+
     vote_post() {
       this.set_vote({
         user: this.user,
