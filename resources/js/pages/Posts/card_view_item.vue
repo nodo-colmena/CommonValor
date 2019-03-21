@@ -5,10 +5,10 @@
         <b-row>
           <b-col sm="12" class="headers">
             <div>
-              <b-img width="20" height="20" :src="this.info.img"/>
+              <b-img width="20" height="20" :src="this.image"/>
               <!-- <b-img blank width="20" height="20" blank-color="#777" class="m-1"/> -->
               <a>{{post.author}}</a>
-              <a>{{info.reputation}}</a>
+              <a>{{reputacion}}</a>
               <a>en {{tag}}</a>
               <a>{{post.created}}</a>
             </div>
@@ -61,10 +61,8 @@ export default {
 
   data() {
     return {
-      info: {
-        img: "",
-        reputation: 0
-      }
+      image: null,
+      reputacion: 0
     };
   },
 
@@ -82,8 +80,8 @@ export default {
     ...mapGetters({
       client: "auth/client",
       user: "auth/user",
-      api: "auth/api",
-      author: "posts/author_information"
+      api: "auth/api"
+      //author: "posts/author_information"
     })
   },
   methods: {
@@ -110,8 +108,16 @@ export default {
       });
     },
 
-    bringAuthorDatas() {
-      this.get_author_info({ client: this.client, username: this.post.author });
+    async bringAuthorDatas() {
+      const accSearch = this.post.author;
+      const max = 1;
+      const autor = await this.client.database.call("get_accounts", [
+        [accSearch]
+      ]);
+      const json = JSON.parse(autor[0].json_metadata);
+      this.image = json.profile.profile_image;
+      this.reputacion = autor[0].reputation;
+      console.log(this.reputacion);
     }
   },
 
@@ -119,12 +125,6 @@ export default {
     //request to public client
     this.get_client();
     this.bringAuthorDatas();
-
-    /* this.info.img = this.author.img;
-    this.info.reputation = this.author.reputation; */
-    this.info = new Object();
-    this.info.img = this.author.img;
-    this.reputation = this.author.reputation;
   }
 };
 </script>

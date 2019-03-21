@@ -1,6 +1,6 @@
 <template>
   <div>
-  <!-- Content here -->
+    <!-- Content here -->
     <h2 center="true">{{post_selected.title}}</h2>
     <h4>{{post_selected.author}} date: {{date}}</h4>
     <!-- TODO:Styles of structure post-->
@@ -12,7 +12,7 @@
     <!-- TODO: Render structure for comments-->
     <!-- FIXME: Sometimes Author is Undefined-->
     <comments/>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -66,14 +66,14 @@ export default {
       const Remarkable = require("remarkable"); //Convert json to markdown
       const md = new Remarkable({ html: true, linkify: true });
       this.body = md.render(this.post_selected.body);
-      console.log("POST:" + this.post_selected.body);
+      //onsole.log("POST:" + this.post_selected.body);
     },
 
     get_date() {
       this.date = this.post_selected.created;
       console.log(this.date);
       this.date = new Date(this.date).toDateString(); //TODO:need implement Moments.js here
-      console.log(this.date);
+      //console.log(this.date);
     },
 
     get_tags() {

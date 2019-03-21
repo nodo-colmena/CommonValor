@@ -44,9 +44,6 @@ export default {
   },
 
   get_comments({ commit }, { author, permlink, client }) {
-    /* console.log('perm'+permlink)
-    console.log(author)
-    console.log(client) */
     return new Promise((resolve, reject) => {
       client.database.call('get_content_replies', [author, permlink])
         .then((response) => {
@@ -102,16 +99,7 @@ export default {
     const autor = await user.client.database.call('get_accounts', [[accSearch],]);
     console.log(Object.values(autor[0]));
 
-    const json = JSON.parse(autor[0].json_metadata); // body content
-    const image = json.profile.profile_image;
-    console.log(json.toString());
-    const reputation = autor[0].reputation;
-    const author_obj = {
-      'a_image': image,
-      'a_reputation': reputation
-    };
-
-    commit("SET_AUTHOR_INFO", author_obj);
+    commit("SET_AUTHOR_INFO", autor);
   },
 
 }
