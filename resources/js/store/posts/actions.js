@@ -107,12 +107,9 @@ export default {
     console.log(json.toString());
     const reputation = autor[0].author_reputation;
     const author_obj = {
-      a_image: image,
-      a_reputation,
-
+      'a_image': image,
+      'a_reputation': reputation
     };
-    author_obj.a_image = image;
-    author_obj.a_reputation = reputation;
 
     commit("SET_AUTHOR_INFO", author_obj);
   },

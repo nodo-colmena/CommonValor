@@ -47813,17 +47813,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
               console.log(json.toString());
               reputation = autor[0].author_reputation;
               author_obj = {
-                a_image: image,
-                a_reputation: a_reputation
-
+                'a_image': image,
+                'a_reputation': reputation
               };
 
-              author_obj.a_image = image;
-              author_obj.a_reputation = reputation;
 
               commit("SET_AUTHOR_INFO", author_obj);
 
-            case 14:
+            case 12:
             case "end":
               return _context2.stop();
           }
@@ -53699,7 +53696,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("a", [_vm._v(_vm._s(_vm.post.author))]),
                         _vm._v(" "),
-                        _c("a", [_vm._v("(90)")]),
+                        _c("a", [_vm._v(_vm._s(this.author.reputation))]),
                         _vm._v(" "),
                         _c("a", [_vm._v("en " + _vm._s(_vm.tag))]),
                         _vm._v(" "),

@@ -8,7 +8,7 @@
               <b-img width="20" height="20" :src="this.author.img"/>
               <!-- <b-img blank width="20" height="20" blank-color="#777" class="m-1"/> -->
               <a>{{post.author}}</a>
-              <a>(90)</a>
+              <a>{{this.author.reputation}}</a>
               <a>en {{tag}}</a>
               <a>{{post.created}}</a>
             </div>
