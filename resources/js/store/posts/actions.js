@@ -105,7 +105,7 @@ export default {
     const json = JSON.parse(autor[0].json_metadata); // body content
     const image = json.profile.profile_image;
     console.log(json.toString());
-    const reputation = autor[0].author_reputation;
+    const reputation = autor[0].reputation;
     const author_obj = {
       'a_image': image,
       'a_reputation': reputation

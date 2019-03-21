@@ -47811,7 +47811,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
               image = json.profile.profile_image;
 
               console.log(json.toString());
-              reputation = autor[0].author_reputation;
+              reputation = autor[0].reputation;
               author_obj = {
                 'a_image': image,
                 'a_reputation': reputation
@@ -48693,7 +48693,7 @@ if (hadRuntime) {
   comments_selected_post: [],
   author_info: {
     img: "",
-    reputation: ""
+    reputation: 0
   }
 });
 
@@ -53605,7 +53605,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
   data: function data() {
     return {
-      p_img: ""
+      info: {
+        img: "",
+        reputation: 0
+      }
     };
   },
 
@@ -53657,6 +53660,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     //request to public client
     this.get_client();
     this.bringAuthorDatas();
+
+    /* this.info.img = this.author.img;
+    this.info.reputation = this.author.reputation; */
+    this.info = {
+      img: this.author.img,
+      reputation: this.reputation
+    };
   }
 });
 
@@ -53690,13 +53700,13 @@ var render = function() {
                           attrs: {
                             width: "20",
                             height: "20",
-                            src: this.author.img
+                            src: this.info.img
                           }
                         }),
                         _vm._v(" "),
                         _c("a", [_vm._v(_vm._s(_vm.post.author))]),
                         _vm._v(" "),
-                        _c("a", [_vm._v(_vm._s(this.author.reputation))]),
+                        _c("a", [_vm._v(_vm._s(_vm.info.reputation))]),
                         _vm._v(" "),
                         _c("a", [_vm._v("en " + _vm._s(_vm.tag))]),
                         _vm._v(" "),

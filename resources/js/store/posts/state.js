@@ -9,6 +9,6 @@ export default {
   comments_selected_post: [],
   author_info: {
     img: "",
-    reputation: "",
+    reputation: 0,
   },
 }

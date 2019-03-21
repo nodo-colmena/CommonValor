@@ -5,10 +5,10 @@
         <b-row>
           <b-col sm="12" class="headers">
             <div>
-              <b-img width="20" height="20" :src="this.author.img"/>
+              <b-img width="20" height="20" :src="this.info.img"/>
               <!-- <b-img blank width="20" height="20" blank-color="#777" class="m-1"/> -->
               <a>{{post.author}}</a>
-              <a>{{this.author.reputation}}</a>
+              <a>{{info.reputation}}</a>
               <a>en {{tag}}</a>
               <a>{{post.created}}</a>
             </div>
@@ -61,7 +61,10 @@ export default {
 
   data() {
     return {
-      p_img: ""
+      info: {
+        img: "",
+        reputation: 0
+      }
     };
   },
 
@@ -116,6 +119,13 @@ export default {
     //request to public client
     this.get_client();
     this.bringAuthorDatas();
+
+    /* this.info.img = this.author.img;
+    this.info.reputation = this.author.reputation; */
+    this.info = {
+      img: this.author.img,
+      reputation: this.reputation
+    };
   }
 };
 </script>
