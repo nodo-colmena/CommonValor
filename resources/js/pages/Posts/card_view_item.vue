@@ -122,10 +122,9 @@ export default {
 
     /* this.info.img = this.author.img;
     this.info.reputation = this.author.reputation; */
-    this.info = {
-      img: this.author.img,
-      reputation: this.reputation
-    };
+    this.info = new Object();
+    this.info.img = this.author.img;
+    this.reputation = this.author.reputation;
   }
 };
 </script>
