@@ -1,6 +1,6 @@
 <template>
 <div class="c_card">
-    <img class="avatar" :src="c_picture">
+    <img class="avatar" thumbnail fluid :src="c_picture">
         <div class="infos">
           <div class="name capitalize">
             {{ comment.author }}
@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { mapActions, mapGetters, mapMutations } from "vuex";
+
 export default {
 name: "card_comment",
 data() {
@@ -22,6 +24,8 @@ data() {
         c_author: "",
         c_username: "",
         c_backgr: "",
+        reputacion: 0,
+        status_img: false,
     }
 },
 props: {
@@ -30,6 +34,11 @@ props: {
         required: true
     },
 },
+computed: {
+    ...mapGetters({
+        client: "auth/client",
+    })
+},
 methods: {
     get_body_comments() {
         const Remarkable = require("remarkable"); //Convert json to markdown
@@ -37,12 +46,29 @@ methods: {
         this.body_comment = md.render(this.comment.body);
         console.log("COMMENT" + this.comment.body);
     },
-},
-created(){
-    this.get_body_comments();
+    async bringAuthorDatas() {
+        const accSearch = this.comment.author;
+        const max = 1;
+        const autor = await this.client.database.call("get_accounts", [
+        [accSearch]
+        ]);
+        const json = JSON.parse(autor[0].json_metadata);
+        this.c_picture = json.profile.profile_image;
+        if(this.c_picture != null){
+          this.status_img = true;
+        }
+        console.log("Imagen comentarios:", this.c_picture);
+        this.reputacion = autor[0].reputation;
+        console.log(this.reputacion);
+    },
 },
 
+created(){
+    this.get_body_comments();
+    this.bringAuthorDatas();
 }
+
+};
 
 </script>
 
@@ -59,6 +85,7 @@ $shadow_hover: 0 6px 10px rgba(0,0,0,0.16), 0 6px 10px rgba(0,0,0,0.23);
     border-radius: 5px;
     box-shadow: $shadow;
     background: rgba(255, 255, 255, .8);
+    margin: 25px 0 0 0;
 .avatar {
     width: 100px;
     height: 100px;

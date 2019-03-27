@@ -1,10 +1,12 @@
 <template>
   <div>
     <!-- Content here -->
-    <h2 center="true">{{post_selected.title}}</h2>
+    <h2 class="entry-title" center="true">{{post_selected.title}}</h2>
     <h4>{{post_selected.author}} date: {{date}}</h4>
     <!-- TODO:Styles of structure post-->
+    <article class="hentry">
     <div class="image-w-text" v-html="body"></div>
+    </article>
     <!--TODO: charge dimension of pictures -->
     <b-link v-for="link in tags" :key="link.text">{{link}}</b-link>
     <!-- TODO: Style and link tags with filter tags in POST_LIST.vue-->
