@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-container class="bv-example-row">
-      <b-card class="card" v-on:click="charge_post">
+      <b-card v-show="this.status_img" class="card" v-on:click="charge_post">
         <b-row>
           <b-col sm="12" class="headers">
             <div>
@@ -9,7 +9,7 @@
               <a>{{post.author}}</a>
               <a>{{reputacion}}</a>
               <a>en {{tag}}</a>
-              <a>{{post.created}}</a>
+              <a>{{this.format_date}}</a>
             </div>
           </b-col>
         </b-row>
@@ -61,7 +61,9 @@ export default {
   data() {
     return {
       image: null,
-      reputacion: 0
+      format_date: null,
+      reputacion: 0,
+      status_img: false,
     };
   },
 
@@ -104,6 +106,10 @@ export default {
     date_format() {
       //TODO: ADD Moments.js to date format
       //Use post.created this parameter have the date
+      const moment = require('moment');
+      const date = moment(this.post.created).fromNow();
+      this.format_date = date;
+      console.log(this.format_date)
     },
 
     vote_post() {
@@ -123,11 +129,17 @@ export default {
       ]);
       const json = JSON.parse(autor[0].json_metadata);
       this.image = json.profile.profile_image;
+      if(this.image != null){
+        this.status_img = true;
+      }
+      console.log("Imagen:", this.image);
       this.reputacion = autor[0].reputation;
       console.log(this.reputacion);
     }
   },
-
+  mounted(){
+    this.date_format();
+  },
   created() {
     //request to public client
     this.get_client();
