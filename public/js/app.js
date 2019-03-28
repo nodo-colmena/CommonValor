@@ -70478,8 +70478,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 console.log("Imagen:", this.image);
                 this.reputacion = autor[0].reputation;
                 console.log(this.reputacion);
+                this.format_rep();
 
-              case 11:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -70492,7 +70493,31 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       }
 
       return bringAuthorDatas;
-    }()
+    }(),
+    format_rep: function format_rep() {
+      function log10(str) {
+        var leadingDigits = parseInt(str.substring(0, 4));
+        var log = Math.log(leadingDigits) / Math.LN10 + 0.00000001;
+        var n = str.length - 1;
+        return n + (log - parseInt(log));
+      }
+      if (this.reputacion == null) return this.reputacion;
+      var rep = String(this.reputacion);
+      var neg = rep.charAt(0) === '-';
+      rep = neg ? rep.substring(1) : rep;
+
+      var out = log10(rep);
+      if (isNaN(out)) out = 0;
+      out = Math.max(out - 9, 0); // @ -9, $0.50 earned is approx magnitude 1
+      out = (neg ? -1 : 1) * out;
+      out = out * 9 + 25; // 9 points per magnitude. center at 25
+      // base-line 0 to darken and < 0 to auto hide (grep rephide)
+      out = parseInt(out);
+      console.log("reppp:", out);
+      this.reputacion = out;
+      /* this.reputacion = out; */
+      return out;
+    }
   }),
   mounted: function mounted() {
     this.date_format();
@@ -70851,9 +70876,9 @@ var render = function() {
                         _vm._v(" "),
                         _c("a", [_vm._v(_vm._s(_vm.post.author))]),
                         _vm._v(" "),
-                        _c("a", [_vm._v(_vm._s(_vm.reputacion))]),
+                        _c("a", [_vm._v("(" + _vm._s(_vm.reputacion) + ")")]),
                         _vm._v(" "),
-                        _c("a", [_vm._v("en " + _vm._s(_vm.tag))]),
+                        _c("a", [_vm._v("in " + _vm._s(_vm.tag))]),
                         _vm._v(" "),
                         _c("a", [_vm._v(_vm._s(this.format_date))])
                       ],
