@@ -24,7 +24,12 @@
             <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
           </template>
           <b-dropdown-item href="#/panel_usr">Profile</b-dropdown-item>
-          <b-dropdown-item @click="logExit">Signout</b-dropdown-item>
+          <b-dropdown-item href="#/panel_usr">Feed</b-dropdown-item>
+          <b-dropdown-item href="#/panel_usr">Blog</b-dropdown-item>
+          <b-dropdown-item href="#/panel_usr">Comments</b-dropdown-item>
+          <b-dropdown-item href="#/panel_usr">Replys</b-dropdown-item>
+          <b-dropdown-item href="#/panel_usr">Whallet</b-dropdown-item>
+          <b-dropdown-item @click="logExit">SignOut</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>

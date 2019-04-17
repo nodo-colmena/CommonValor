@@ -11,7 +11,7 @@ export default {
   logout({ commit }, api) {
     api.revokeToken(function (err, res) {
       if (res) {
-        console.log('unset' + Object.values(res))
+        //console.log('unset' + Object.values(res))
         commit("unset_user")
       }
     });
@@ -41,9 +41,11 @@ export default {
   },
 
   get_me({ commit }, api) {
-    api.me(function (err, res) {
-      commit('me_data', res)
-    })
+    if (api != null) {
+      api.me(function (err, res) {//request to api steem
+        commit('me_data', res)
+      })
+    }
   }
 
 

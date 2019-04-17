@@ -63,7 +63,7 @@ export default {
       image: null,
       format_date: null,
       reputacion: 0,
-      status_img: false,
+      status_img: false
     };
   },
 
@@ -100,16 +100,14 @@ export default {
       this.$router.push({ path: "/post/" + p.permlink });
       this.get_selected_post(p);
       //console.log(this.post_selected)
-      //TODO: Pass reputation, Image author with PROPS to post_details Component
+      //TODO: Pass reputation, Image author with PROPSRouter  to post_details Component
     },
 
     date_format() {
-      //TODO: ADD Moments.js to date format
-      //Use post.created this parameter have the date
-      const moment = require('moment');
+      const moment = require("moment");
       const date = moment(this.post.created).fromNow();
       this.format_date = date;
-      console.log(this.format_date)
+      console.log(this.format_date);
     },
 
     vote_post() {
@@ -129,7 +127,7 @@ export default {
       ]);
       const json = JSON.parse(autor[0].json_metadata);
       this.image = json.profile.profile_image;
-      if(this.image != null){
+      if (this.image != null) {
         this.status_img = true;
       }
       console.log("Imagen:", this.image);
@@ -137,32 +135,31 @@ export default {
       console.log(this.reputacion);
       this.format_rep();
     },
-  format_rep(){
-    function log10(str) {
+    format_rep() {
+      function log10(str) {
         const leadingDigits = parseInt(str.substring(0, 4));
         const log = Math.log(leadingDigits) / Math.LN10 + 0.00000001;
         const n = str.length - 1;
         return n + (log - parseInt(log));
-    }    
-        if (this.reputacion == null) return this.reputacion;
-        let rep = String(this.reputacion);
-        const neg = rep.charAt(0) === '-';
-        rep = neg ? rep.substring(1) : rep;
+      }
+      if (this.reputacion == null) return this.reputacion;
+      let rep = String(this.reputacion);
+      const neg = rep.charAt(0) === "-";
+      rep = neg ? rep.substring(1) : rep;
 
-        let out = log10(rep);
-        if (isNaN(out)) out = 0;
-        out = Math.max(out - 9, 0); // @ -9, $0.50 earned is approx magnitude 1
-        out = (neg ? -1 : 1) * out;
-        out = out * 9 + 25; // 9 points per magnitude. center at 25
-        // base-line 0 to darken and < 0 to auto hide (grep rephide)
-        out = parseInt(out);
-        console.log("reppp:", out)
-        this.reputacion = out;
-        /* this.reputacion = out; */
-        return out;
+      let out = log10(rep);
+      if (isNaN(out)) out = 0;
+      out = Math.max(out - 9, 0); // @ -9, $0.50 earned is approx magnitude 1
+      out = (neg ? -1 : 1) * out;
+      out = out * 9 + 25; // 9 points per magnitude. center at 25
+      // base-line 0 to darken and < 0 to auto hide (grep rephide)
+      out = parseInt(out);
+      //console.log("reppp:", out);
+      this.reputacion = out;
+      return out;
+    }
   },
-  },
-  mounted(){
+  mounted() {
     this.date_format();
   },
   created() {

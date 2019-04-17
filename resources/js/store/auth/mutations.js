@@ -21,6 +21,7 @@ export default {
   },
 
   me_data(state, info) {
-    state.user.meData = info;
+    if (state.user != null)
+      state.user.meData = info;
   }
 }
