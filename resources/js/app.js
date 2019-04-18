@@ -108,7 +108,7 @@ const routes = [
   { path: '/Posts', component: Posts, meta: { layout: 'no-flexbox' } },
   { path: '/newPost', component: new_post, meta: { layout: 'no-flexbox' } },
   { path: '/panel_usr', component: profile, meta: { layout: 'no-flexbox' } },
-  { path: '/post/:url', component: post_details, name: 'post_details', meta: { layout: 'default' } },
+  { path: '/post/:url', component: post_details, name: 'post_details', meta: { layout: 'details' } },
   { path: '/', redirect: '/LandPage' },
   { path: '/*', redirect: '/LandPage' },
 

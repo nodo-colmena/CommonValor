@@ -10,13 +10,15 @@
 import NoFlexboxLayout from "./layouts/NoFlexbox.vue";
 import DefaultLayout from "./layouts/Default.vue";
 import SimpleLayout from "./layouts/Simple.vue";
+import detailsLayout from "./layouts/PostDetailsColumn.vue";
 
 export default {
   name: "App",
   components: {
     DefaultLayout,
     NoFlexboxLayout,
-    SimpleLayout
+    SimpleLayout,
+    detailsLayout
   },
   computed: {
     layout() {

@@ -20,6 +20,7 @@
 <script>
 import comments from "./comments.vue";
 import { mapActions, mapGetters, mapMutations } from "vuex";
+import ImageUploader from 'vue-image-upload-resize';
 
 export default {
   name: "post_details",
@@ -67,7 +68,13 @@ export default {
     get_body_post() {
       const Remarkable = require("remarkable"); //Convert json to markdown
       const md = new Remarkable({ html: true, linkify: true });
-      this.body = md.render(this.post_selected.body);
+      //this.body = md.render(this.post_selected.body);
+      ///comment remarkable parser
+      //Option 2: Showdown
+      var showdown = require('showdown');
+      var converter = new showdown.Converter({parseImgDimensions: true, simplifiedAutoLink: true});
+      this.body = converter.makeHtml(this.post_selected.body);
+
       //onsole.log("POST:" + this.post_selected.body);
     },
 

@@ -24,8 +24,7 @@
               <h5>{{post.title}}</h5>
               <p class="card-text">
                 <!-- TODO:change THIS -->
-                This card has supporting text below as a natural lead-in
-                to additional content.
+                {{this.post_body_preview}}...
               </p>
             </div>
             <b-row>
@@ -64,6 +63,7 @@ export default {
       format_date: null,
       reputacion: 0,
       status_img: false,
+      post_body_preview: null,
     };
   },
 
@@ -163,7 +163,17 @@ export default {
   },
   },
   mounted(){
+    const length = 180;
     this.date_format();
+    const removeMd = require('remove-markdown');
+    const markdown = this.post.body;
+    const plainText = removeMd(markdown,{
+      stripListLeaders: false , // strip list leaders (default: true)
+      listUnicodeChar: '',     // char to insert instead of stripped list leaders (default: '')
+      gfm: true,                // support GitHub-Flavored Markdown (default: true)
+      useImgAltText: false,      // replace images with alt-text, if present (default: true)     
+    });
+    this.post_body_preview = plainText.substring(0, length);
   },
   created() {
     //request to public client
