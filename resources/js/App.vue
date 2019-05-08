@@ -10,13 +10,15 @@
 import NoFlexboxLayout from "./layouts/NoFlexbox.vue";
 import DefaultLayout from "./layouts/Default.vue";
 import SimpleLayout from "./layouts/Simple.vue";
+import LandingLayout from "./layouts/Landing.vue";
 
 export default {
   name: "App",
   components: {
     DefaultLayout,
     NoFlexboxLayout,
-    SimpleLayout
+    SimpleLayout,
+    LandingLayout
   },
   computed: {
     layout() {
