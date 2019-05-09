@@ -1,9 +1,11 @@
-<template>
+<template> <div>  
   <div class="land">
+    <img src="http://wp.magnium-themes.com/barrel/barrel-11/wp-content/uploads/2017/02/girl-laptop-street.jpg" class="responsive">
+    </div>
     <div class="land-text">
-      <h2>Earn by learning & cooperating in a new FairEconomy</h2>
-      <b-btn variant="warning" href="#/Investors">
-        <strong>How it works</strong>
+      <h1>Earn by learning/cooperating in a new FairEconomy</h1>
+      <b-btn class="btn" href="#/Investors">
+        Get started
       </b-btn>
     </div>
   </div>
@@ -17,19 +19,23 @@ export default {
 
 
 <style lang="scss">
-.land {
-  background-image: url("https://ak3.picdn.net/shutterstock/videos/7882573/thumb/1.jpg");
-  height: 800px;
-  position: relative;
-  background-size: cover;
+.responsive {
+  width: 100%;
+  height: auto;
+  filter: brightness(0.5);
 }
 .land-text {
+  letter-spacing: 4px;
   text-align: center;
   position: absolute;
-  top: 30%;
+  top:300px;
   left: 50%;
   transform: translate(-50%, -50%);
+  height: auto;
   color: white;
-  text-shadow: rgb(255, 255, 255) 0 0 10px, rgb(253, 250, 68) 2px 1px 1px;
+  text-shadow: rgb(238, 238, 238) 0 0 10px, rgb(253, 250, 68) 1px 1px 1px;
+}
+.btn{
+  background-color: #3E5FFE;
 }
 </style>
