@@ -3,17 +3,17 @@
     <!-- Colapsa cuando breackpoin es alcanzado -->
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-    <b-navbar-brand href="#/LandPage">
-      Common Valor
-      <img src height="30" alt>
+    <b-navbar-brand href="#/LandPage" class="appname">
+      <img src="https://i.imgsafe.org/5c/5c6ab4d72a.png" height="30" alt>
+      <strong>CommonValor</strong>
     </b-navbar-brand>
 
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav class="ml-auto mr-auto">
-        <b-nav-item href="#/Posts">Posts</b-nav-item>
+        <b-nav-item href="#/Posts">Contributions</b-nav-item>
         <b-nav-item href="#/Exchange">Exchange</b-nav-item>
-        <b-nav-item href="#/Investors">Investors</b-nav-item>
-        <b-nav-item href="#/AboutUs">AboutUs</b-nav-item>
+        <b-nav-item href="#/Investors">Be part</b-nav-item>
+        <b-nav-item href="#/AboutUs">About</b-nav-item>
       </b-navbar-nav>
 
       <b-navbar-nav>
@@ -61,4 +61,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.appname{
+  font-size: 16px;
+}
+
 </style>
