@@ -1,13 +1,15 @@
 <template>
   <div class="pad">
-    <b-badge>CommonValor Tags</b-badge>
+    <b-badge>Microeconomy:</b-badge>
     <hr>
     <b-nav>
-      <b-nav-item class="rounded" v-on:click="indexing('all')">All Tags</b-nav-item>
-      <b-nav-item class="rounded" v-on:click="indexing('media')">Media</b-nav-item>
-      <b-nav-item class="rounded" v-on:click="indexing('faircoindevelopment')">Faircoin Develepment</b-nav-item>
-      <b-nav-item class="rounded" v-on:click="indexing('circulareconomy')">Circular Economy</b-nav-item>
-      <b-nav-item class="rounded" v-on:click="indexing('localnodes')">Local Nodes</b-nav-item>
+     <!-- <b-nav-item class="rounded" v-on:click="indexing('all')">All Tags</b-nav-item>--->
+      <b-nav-item class="rounded" v-on:click="indexing('faircoop')">faircoop</b-nav-item>
+      <b-nav-item class="rounded" v-on:click="indexing('socialimpact')">socialimpact</b-nav-item>
+      <b-nav-item class="rounded" v-on:click="indexing('circulareconomy')">circulareconomy</b-nav-item>
+      <b-nav-item class="rounded" v-on:click="indexing('localnodes')">localnodes</b-nav-item>
+      <b-nav-item class="rounded" v-on:click="indexing('ecological')">ecological</b-nav-item>
+      <b-nav-item class="rounded" v-on:click="indexing('faircoin')">faircoin</b-nav-item>
     </b-nav>
   </div>
 </template>

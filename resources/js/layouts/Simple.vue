@@ -3,7 +3,7 @@
   <b-container>
       <b-row class="justify-content-md-center">
         <b-col col md="4">
-          <h1> Nodo Colmena</h1>
+          <h1>NC</h1>
         </b-col>
       </b-row>
       <b-row class="justify-content-md-center">

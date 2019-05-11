@@ -1,6 +1,6 @@
 <template>
   <b-card bg-variant="dark">
-    <b-button :href="loginURL" variant="white">Login with Steem</b-button>
+    <b-button :href="loginURL" variant="white">Login with Steemit</b-button>
   </b-card>
 
   <!--<b-card text-variant="white">
