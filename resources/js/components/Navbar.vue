@@ -10,10 +10,11 @@
 
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav class="ml-auto mr-auto">
-        <b-nav-item href="#/Posts">Contributions</b-nav-item>
-        <b-nav-item href="#/Exchange">Exchange</b-nav-item>
-        <b-nav-item href="#/Investors">Be part</b-nav-item>
-        <b-nav-item href="#/AboutUs">About</b-nav-item>
+        <b-nav-item href="#/Posts"><a class="underline">Contributions</a></b-nav-item>
+        <b-nav-item href="#/Exchange"><a class="underline">Exchange</a></b-nav-item>
+        <b-nav-item href="#/Investors"><a class="underline">Be part</a></b-nav-item>
+        <b-nav-item href="#/AboutUs"><a class="underline">About</a></b-nav-item>
+       
       </b-navbar-nav>
 
       <b-navbar-nav>
@@ -41,7 +42,11 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Navbar",
-
+  data () {
+    return {
+      hover: false,
+    }
+  },
   computed: {
     ...mapGetters({
       user: "auth/user",
@@ -63,6 +68,31 @@ export default {
 <style lang="css" scoped>
 .appname{
   font-size: 16px;
+}
+.underline {
+  display: inline;
+  position: relative;
+  overflow: hidden;
+}
+.underline:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  width: 0;
+  bottom: -5px;
+  background: #3E5FFE;
+  height: 1px;
+  transition-property: width;
+  transition-duration: 0.1s;
+  transition-timing-function: ease-out;
+}
+.underline:hover:after,
+.underline:focus:after,
+.underline:active:after {
+  left: 0;
+  right: auto;
+  width: 100%;
 }
 
 </style>
