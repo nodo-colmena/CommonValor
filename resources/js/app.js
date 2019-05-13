@@ -94,7 +94,7 @@ import post_details from './pages/Posts/post_details.vue'
 //declaracion de vector routes necesario para router
 const routes = [
   { path: '/LandPage', component: LandPage, name: 'landpage', meta: { layout: 'landing' }  },
-  { path: '/AboutUs', component: AboutUs,  },
+  { path: '/AboutUs', component: AboutUs, name: 'landpage', meta: { layout: 'landing' }  },
   { path: '/Exchange', component: Exchange },
   { path: '/Investors', component: Investors },
   {
