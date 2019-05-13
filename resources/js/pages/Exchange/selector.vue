@@ -5,7 +5,7 @@
          </div>
           <b-row>
             <b-col cols="4">
-                <h5>Steem</h5>
+                <h5><img src="https://cdn.freebiesupply.com/logos/thumbs/2x/steem-steem-logo.png" height="20" width="20"> Steem</h5>
                 
                 <b-form-group id="SteemForm"
                     label=""
@@ -25,7 +25,7 @@
                 
             </b-col>
             <b-col cols="4">
-                <h5>Faircoin</h5>
+                <h5><img src="https://galiza.fair.coop/wp-content/uploads/2017/10/faircoin-300x300.png" height="20" width="20"> Faircoin</h5>
                 <b-form-group id="FaircoinForm"
                     label=""
                     label-for="InputFaircoin"
@@ -105,8 +105,8 @@ export default {
 .msg{
     font-size: 22px;
     padding-bottom: 40px;
-    padding-left: 15px;
-    padding-top: 30px;
+    padding-left: 8px;
+    padding-top: 60px;
 }
 
 </style>
