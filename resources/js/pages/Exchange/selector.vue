@@ -1,9 +1,12 @@
 <template>
     <b-container>
+         <div class="space">
+         <h1 class="msg"> <strong>Exchange value in a new economy based on cooperation, ethics and solidarity. </strong></h1>
+         </div>
           <b-row>
             <b-col cols="4">
-                <h1>Steem</h1>
-
+                <h5>Steem</h5>
+                
                 <b-form-group id="SteemForm"
                     label=""
                     label-for="InputSteem"
@@ -13,15 +16,16 @@
                         placeholder="Ingrese cantidad en steem"
                         v-model="Csteem"
                         >
+                        
                     </b-form-input>
                 </b-form-group>
 
             </b-col>
             <b-col cols="4">
-                <h1>Exchange</h1>
+                
             </b-col>
             <b-col cols="4">
-                <h1>Faircoin</h1>
+                <h5>Faircoin</h5>
                 <b-form-group id="FaircoinForm"
                     label=""
                     label-for="InputFaircoin"
@@ -92,9 +96,17 @@ export default {
     },
     computed:{
         Cfaircoin(){
-            return this.Csteem*this.steem_price/1.2 // calculate faircoin 1fac = 1.2eur
+            return this.Csteem*this.steem_price/0.07 // calculate faircoin
         }
     }
 }
 </script>
+<style lang="scss">
+.msg{
+    font-size: 22px;
+    padding-bottom: 40px;
+    padding-left: 15px;
+    padding-top: 30px;
+}
 
+</style>
