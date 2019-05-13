@@ -3,7 +3,6 @@
     <!-- <b-nav-item v-on:click="new_post(1)">New Post</b-nav-item> -->
     <b-nav-item href="#/newPost">New to CommonValor?</b-nav-item>
     <b-nav-item href="#/panel_usr">Quick start guide</b-nav-item>
-    <b-nav-item href="#/panel_usr">The blockchain</b-nav-item>
     <b-nav-item href="#/panel_usr">FAQs</b-nav-item>
     <b-nav-item href="#/panel_usr">Sign up</b-nav-item>
   </b-nav>

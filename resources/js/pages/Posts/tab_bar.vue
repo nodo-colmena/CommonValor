@@ -14,10 +14,6 @@
         <font-awesome-icon icon="fire"/>
         <a class="spaces">Hot</a>
       </b-nav-item>
-      <b-nav-item v-on:click="tab_select('promoted')">
-        <font-awesome-icon icon="chart-bar"/>
-        <a class="spaces">Promoted</a>
-      </b-nav-item>
     </b-nav>
   </div>
 </template>
